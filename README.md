@@ -1,6 +1,6 @@
 Naslov seminarske naloge: NewVoyage 
 
-Člana ekipe:
+Članovi ekipe:
 	63220435 - Salkić Benjamin
 	63220418 - Makivić Stefan
 
