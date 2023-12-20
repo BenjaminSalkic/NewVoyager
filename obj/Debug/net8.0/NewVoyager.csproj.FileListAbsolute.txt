@@ -254,3 +254,4 @@ C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\NewVoyager.MvcApplicationPar
 C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\NewVoyager.sourcelink.json
