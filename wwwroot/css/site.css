@@ -2,6 +2,30 @@ html {
   font-size: 14px;
 }
 
+body{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.screen{
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.left{
+  padding-top: 3rem;
+  float: left;
+  width: 70%;
+  height: 100vh; /* 100% of the viewport height */
+  background-color: #ffcccc; /* Left div background color */
+}
+.right{
+  float: right;
+  width: 30%;
+  height: 100vh; /* 100% of the viewport height */
+  background-color: #ccffcc; /* Right div background color */
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

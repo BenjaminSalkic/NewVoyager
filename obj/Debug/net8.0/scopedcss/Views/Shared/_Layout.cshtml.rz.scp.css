@@ -1,6 +1,9 @@
 /* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+.containerB[b-wx7riv4yd6]{
+  width: 100%;
+}
 
 a.navbar-brand[b-wx7riv4yd6] {
   white-space: normal;
@@ -11,6 +14,27 @@ a.navbar-brand[b-wx7riv4yd6] {
 a[b-wx7riv4yd6] {
   color: #0077cc;
 }
+.wrapper[b-wx7riv4yd6] {
+  display: flex;
+}
+
+.sidebar[b-wx7riv4yd6] {
+  min-width: 250px;
+  max-width: 250px;
+  background: #343a40;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.sidebar.active[b-wx7riv4yd6] {
+  width: 50px;
+}
+
+.content[b-wx7riv4yd6] {
+  flex: 1;
+  padding: 15px;
+}
+
 
 .btn-primary[b-wx7riv4yd6] {
   color: #fff;
