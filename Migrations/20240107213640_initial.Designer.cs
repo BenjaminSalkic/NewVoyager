@@ -12,8 +12,8 @@ using NewVoyager.Data;
 namespace NewVoyager.Migrations
 {
     [DbContext(typeof(VoyagerContext))]
-    [Migration("20231127151930_AddingUser")]
-    partial class AddingUser
+    [Migration("20240107213640_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,10 +105,12 @@ namespace NewVoyager.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -145,10 +147,12 @@ namespace NewVoyager.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -274,7 +278,7 @@ namespace NewVoyager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VoyagerID")
+                    b.Property<int>("VoyagerID")
                         .HasColumnType("int");
 
                     b.HasKey("PlanID");
@@ -395,7 +399,9 @@ namespace NewVoyager.Migrations
                 {
                     b.HasOne("NewVoyager.Models.Voyager", "Voyager")
                         .WithMany("Plans")
-                        .HasForeignKey("VoyagerID");
+                        .HasForeignKey("VoyagerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Voyager");
                 });

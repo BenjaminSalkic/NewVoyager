@@ -22,7 +22,7 @@ namespace NewVoyager.Controllers
         }
 
         // GET: ApplicationUser
-        [Authorize (Roles = "Administrator")]
+        //[Authorize (Roles = "Administrator")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Users.ToListAsync());

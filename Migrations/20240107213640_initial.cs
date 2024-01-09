@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NewVoyager.Migrations
 {
     /// <inheritdoc />
-    public partial class AddingUser : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -50,6 +50,20 @@ namespace NewVoyager.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Voyager",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Voyager", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,8 +112,8 @@ namespace NewVoyager.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ProviderKey = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     ProviderDisplayName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
@@ -143,8 +157,8 @@ namespace NewVoyager.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Value = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -156,6 +170,70 @@ namespace NewVoyager.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Plan",
+                columns: table => new
+                {
+                    PlanID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlanName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VoyagerID = table.Column<int>(type: "int", nullable: false),
+                    Attendees = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Plan", x => x.PlanID);
+                    table.ForeignKey(
+                        name: "FK_Plan_Voyager_VoyagerID",
+                        column: x => x.VoyagerID,
+                        principalTable: "Voyager",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Trip",
+                columns: table => new
+                {
+                    TripID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TripName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateTo = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PlanID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trip", x => x.TripID);
+                    table.ForeignKey(
+                        name: "FK_Trip_Plan_PlanID",
+                        column: x => x.PlanID,
+                        principalTable: "Plan",
+                        principalColumn: "PlanID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Event",
+                columns: table => new
+                {
+                    EventID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OrderNum = table.Column<int>(type: "int", nullable: true),
+                    DateFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateTo = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    TripsTripID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Event", x => x.EventID);
+                    table.ForeignKey(
+                        name: "FK_Event_Trip_TripsTripID",
+                        column: x => x.TripsTripID,
+                        principalTable: "Trip",
+                        principalColumn: "TripID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -196,6 +274,21 @@ namespace NewVoyager.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Event_TripsTripID",
+                table: "Event",
+                column: "TripsTripID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Plan_VoyagerID",
+                table: "Plan",
+                column: "VoyagerID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Trip_PlanID",
+                table: "Trip",
+                column: "PlanID");
         }
 
         /// <inheritdoc />
@@ -217,10 +310,22 @@ namespace NewVoyager.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Event");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Trip");
+
+            migrationBuilder.DropTable(
+                name: "Plan");
+
+            migrationBuilder.DropTable(
+                name: "Voyager");
         }
     }
 }

@@ -26,6 +26,12 @@ namespace NewVoyager.Data
             modelBuilder.Entity<Events>().ToTable("Event");
             modelBuilder.Entity<Plans>().ToTable("Plan");
             modelBuilder.Entity<Trips>().ToTable("Trip");
+
+            modelBuilder.Entity<Plans>()
+            .HasOne(p => p.Voyager)
+            .WithMany(v => v.Plans)
+            .HasForeignKey(p => p.VoyagerID);
+                
            
         }
     }
