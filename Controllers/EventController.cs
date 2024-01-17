@@ -44,9 +44,10 @@ namespace NewVoyager.Controllers
         }
 
         // GET: Event/Create
-        public IActionResult Create()
+        public IActionResult Create(int tripId)
         {
-            return View();
+            var dogadjaj = new Events { TripID = tripId }; // Set TripID for the new event
+            return View(dogadjaj);
         }
 
         // POST: Event/Create
@@ -54,13 +55,13 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventID,Opis,OrderNum,DateFrom,DateTo")] Events events)
+        public async Task<IActionResult> Create([Bind("EventID,Opis,DateFrom,DateTo,TripID")] Events events)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(events);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Trip", new { id = events.TripID }); // Redirect to the details view of the trip
             }
             return View(events);
         }
@@ -86,7 +87,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventID,Opis,OrderNum,DateFrom,DateTo")] Events events)
+        public async Task<IActionResult> Edit(int id, [Bind("EventID,Opis,DateFrom,DateTo")] Events events)
         {
             if (id != events.EventID)
             {

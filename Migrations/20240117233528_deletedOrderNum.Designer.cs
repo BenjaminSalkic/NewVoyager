@@ -12,8 +12,8 @@ using NewVoyager.Data;
 namespace NewVoyager.Migrations
 {
     [DbContext(typeof(VoyagerContext))]
-    [Migration("20240117093708_NewStart")]
-    partial class NewStart
+    [Migration("20240117233528_deletedOrderNum")]
+    partial class deletedOrderNum
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -250,12 +250,12 @@ namespace NewVoyager.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TripsTripID")
+                    b.Property<int?>("TripID")
                         .HasColumnType("int");
 
                     b.HasKey("EventID");
 
-                    b.HasIndex("TripsTripID");
+                    b.HasIndex("TripID");
 
                     b.ToTable("Event", (string)null);
                 });
@@ -269,7 +269,6 @@ namespace NewVoyager.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanID"));
 
                     b.Property<string>("AppUserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PlanName")
@@ -388,20 +387,18 @@ namespace NewVoyager.Migrations
 
             modelBuilder.Entity("NewVoyager.Models.Events", b =>
                 {
-                    b.HasOne("NewVoyager.Models.Trips", "Trips")
+                    b.HasOne("NewVoyager.Models.Trips", "Trip")
                         .WithMany("Events")
-                        .HasForeignKey("TripsTripID");
+                        .HasForeignKey("TripID");
 
-                    b.Navigation("Trips");
+                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>
                 {
                     b.HasOne("NewVoyager.Models.ApplicationUser", "AppUser")
                         .WithMany("Plans")
-                        .HasForeignKey("AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserID");
 
                     b.HasOne("NewVoyager.Models.Voyager", null)
                         .WithMany("Plans")

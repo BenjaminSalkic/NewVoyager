@@ -247,15 +247,12 @@ namespace NewVoyager.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderNum")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TripsTripID")
+                    b.Property<int?>("TripID")
                         .HasColumnType("int");
 
                     b.HasKey("EventID");
 
-                    b.HasIndex("TripsTripID");
+                    b.HasIndex("TripID");
 
                     b.ToTable("Event", (string)null);
                 });
@@ -387,11 +384,11 @@ namespace NewVoyager.Migrations
 
             modelBuilder.Entity("NewVoyager.Models.Events", b =>
                 {
-                    b.HasOne("NewVoyager.Models.Trips", "Trips")
+                    b.HasOne("NewVoyager.Models.Trips", "Trip")
                         .WithMany("Events")
-                        .HasForeignKey("TripsTripID");
+                        .HasForeignKey("TripID");
 
-                    b.Navigation("Trips");
+                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>

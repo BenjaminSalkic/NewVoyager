@@ -34,6 +34,7 @@ namespace NewVoyager.Controllers
             }
 
             var trips = await _context.Trips
+                .Include(t => t.Events) // Include the events in the query
                 .FirstOrDefaultAsync(m => m.TripID == id);
             if (trips == null)
             {

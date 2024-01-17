@@ -250,8 +250,6 @@ namespace NewVoyager.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderNum")
-                        .HasColumnType("int");
 
                     b.Property<int?>("TripsTripID")
                         .HasColumnType("int");

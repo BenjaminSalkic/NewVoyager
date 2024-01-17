@@ -226,7 +226,6 @@ namespace NewVoyager.Migrations
                     EventID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Opis = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderNum = table.Column<int>(type: "int", nullable: true),
                     DateFrom = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DateTo = table.Column<DateTime>(type: "datetime2", nullable: true),
                     TripsTripID = table.Column<int>(type: "int", nullable: true)

@@ -31,7 +31,11 @@ namespace NewVoyager.Data
             .HasOne(p => p.AppUser)
             .WithMany(v => v.Plans)
             .HasForeignKey(p => p.AppUserID);
-                
+            
+             modelBuilder.Entity<Trips>()
+                .HasMany(t => t.Events)
+                .WithOne(e => e.Trip)
+                .HasForeignKey(e => e.TripID);
            
         }
     }
