@@ -28,9 +28,9 @@ namespace NewVoyager.Data
             modelBuilder.Entity<Trips>().ToTable("Trip");
 
             modelBuilder.Entity<Plans>()
-            .HasOne(p => p.Voyager)
+            .HasOne(p => p.AppUser)
             .WithMany(v => v.Plans)
-            .HasForeignKey(p => p.VoyagerID);
+            .HasForeignKey(p => p.AppUserID);
                 
            
         }

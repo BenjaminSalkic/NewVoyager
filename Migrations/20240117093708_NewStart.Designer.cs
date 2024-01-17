@@ -12,8 +12,8 @@ using NewVoyager.Data;
 namespace NewVoyager.Migrations
 {
     [DbContext(typeof(VoyagerContext))]
-    [Migration("20240107214151_initial2")]
-    partial class initial2
+    [Migration("20240117093708_NewStart")]
+    partial class NewStart
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -271,17 +271,20 @@ namespace NewVoyager.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanID"));
 
-                    b.Property<string>("Attendees")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("AppUserID")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PlanName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("VoyagerID")
+                    b.Property<int?>("VoyagerID")
                         .HasColumnType("int");
 
                     b.HasKey("PlanID");
+
+                    b.HasIndex("AppUserID");
 
                     b.HasIndex("VoyagerID");
 
@@ -397,13 +400,17 @@ namespace NewVoyager.Migrations
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>
                 {
-                    b.HasOne("NewVoyager.Models.Voyager", "Voyager")
+                    b.HasOne("NewVoyager.Models.ApplicationUser", "AppUser")
                         .WithMany("Plans")
-                        .HasForeignKey("VoyagerID")
+                        .HasForeignKey("AppUserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Voyager");
+                    b.HasOne("NewVoyager.Models.Voyager", null)
+                        .WithMany("Plans")
+                        .HasForeignKey("VoyagerID");
+
+                    b.Navigation("AppUser");
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Trips", b =>
@@ -413,6 +420,11 @@ namespace NewVoyager.Migrations
                         .HasForeignKey("PlanID");
 
                     b.Navigation("Plan");
+                });
+
+            modelBuilder.Entity("NewVoyager.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Plans");
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>

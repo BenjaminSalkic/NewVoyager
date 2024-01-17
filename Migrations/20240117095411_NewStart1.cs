@@ -5,7 +5,7 @@
 namespace NewVoyager.Migrations
 {
     /// <inheritdoc />
-    public partial class initial2 : Migration
+    public partial class NewStart1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

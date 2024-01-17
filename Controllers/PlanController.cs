@@ -7,22 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewVoyager.Data;
 using NewVoyager.Models;
-
+using Microsoft.AspNetCore.Identity;
 namespace NewVoyager.Controllers
 {
     public class PlanController : Controller
     {
         private readonly VoyagerContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlanController(VoyagerContext context)
+
+        public PlanController(VoyagerContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Plan
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Plans.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized(); // or return NotFound();
+            }
+
+            var userPlans = await _context.Plans
+                .Where(p => p.AppUserID == user.Id)
+                .ToListAsync();
+
+            return View(userPlans);
         }
 
         // GET: Plan/Details/5
@@ -34,7 +47,8 @@ namespace NewVoyager.Controllers
             }
 
             var plans = await _context.Plans
-                .FirstOrDefaultAsync(m => m.PlanID == id);
+            .Include(p => p.Trips) // Include the trips in the query
+            .FirstOrDefaultAsync(m => m.PlanID == id);
             if (plans == null)
             {
                 return NotFound();
@@ -58,11 +72,34 @@ namespace NewVoyager.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Get the currently logged-in user
+                var user = await _userManager.GetUserAsync(User);
+
+        // Set the Voyager field with the user id
+                Console.WriteLine("USER ID: "+user.Id);
+                plans.AppUserID = user.Id;
                 _context.Add(plans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(plans);
+        }
+
+        // GET: api/Plan/UserPlans
+        [HttpGet]
+        [Route("api/Plan/UserPlans")]
+        public async Task<IActionResult> GetUserPlans()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized(); // or return NotFound();
+            }
+            var userPlans = await _context.Plans
+                .Where(p => p.AppUserID == user.Id)
+                .ToListAsync();
+
+            return Ok(userPlans); // Returns the list of plans as JSON
         }
 
         // GET: Plan/Edit/5

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NewVoyager.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class NewStart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -179,18 +179,23 @@ namespace NewVoyager.Migrations
                     PlanID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VoyagerID = table.Column<int>(type: "int", nullable: false),
-                    Attendees = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    AppUserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    VoyagerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Plan", x => x.PlanID);
                     table.ForeignKey(
+                        name: "FK_Plan_AspNetUsers_AppUserID",
+                        column: x => x.AppUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Plan_Voyager_VoyagerID",
                         column: x => x.VoyagerID,
                         principalTable: "Voyager",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ID");
                 });
 
             migrationBuilder.CreateTable(
@@ -281,6 +286,11 @@ namespace NewVoyager.Migrations
                 column: "TripsTripID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Plan_AppUserID",
+                table: "Plan",
+                column: "AppUserID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Plan_VoyagerID",
                 table: "Plan",
                 column: "VoyagerID");
@@ -316,13 +326,13 @@ namespace NewVoyager.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Trip");
 
             migrationBuilder.DropTable(
                 name: "Plan");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Voyager");

@@ -44,9 +44,10 @@ namespace NewVoyager.Controllers
         }
 
         // GET: Trip/Create
-        public IActionResult Create()
+        public IActionResult Create(int planId)
         {
-            return View();
+            var trip = new Trips { PlanID = planId }; // Set PlanID for the new trip
+            return View(trip);
         }
 
         // POST: Trip/Create
@@ -54,13 +55,13 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,TripName,DateFrom,DateTo")] Trips trips)
+        public async Task<IActionResult> Create([Bind("TripID,TripName,DateFrom,DateTo,PlanID")] Trips trips)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(trips);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Plan", new { id = trips.PlanID }); // Redirect to the details view of the plan
             }
             return View(trips);
         }
