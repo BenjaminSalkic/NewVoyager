@@ -101,7 +101,7 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(trips);
                     await _context.SaveChangesAsync();
-                    ViewBag.DeleteSuccess = true;
+                    ViewBag.EditSuccess = true;
                     return View(trips);
                 }
                 catch (DbUpdateConcurrencyException)
