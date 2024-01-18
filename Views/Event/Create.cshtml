@@ -18,11 +18,6 @@
                 <span asp-validation-for="Opis" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="OrderNum" class="control-label"></label>
-                <input asp-for="OrderNum" class="form-control" />
-                <span asp-validation-for="OrderNum" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="DateFrom" class="control-label"></label>
                 <input asp-for="DateFrom" class="form-control" />
                 <span asp-validation-for="DateFrom" class="text-danger"></span>
@@ -32,6 +27,7 @@
                 <input asp-for="DateTo" class="form-control" />
                 <span asp-validation-for="DateTo" class="text-danger"></span>
             </div>
+            <input asp-for="TripID" type="hidden" />
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -40,6 +36,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>
 

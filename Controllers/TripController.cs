@@ -34,6 +34,7 @@ namespace NewVoyager.Controllers
             }
 
             var trips = await _context.Trips
+                .Include(t => t.Events) // Include the events in the query
                 .FirstOrDefaultAsync(m => m.TripID == id);
             if (trips == null)
             {
@@ -44,9 +45,10 @@ namespace NewVoyager.Controllers
         }
 
         // GET: Trip/Create
-        public IActionResult Create()
+        public IActionResult Create(int planId)
         {
-            return View();
+            var trip = new Trips { PlanID = planId }; // Set PlanID for the new trip
+            return View(trip);
         }
 
         // POST: Trip/Create
@@ -54,13 +56,13 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TripID,TripName,DateFrom,DateTo")] Trips trips)
+        public async Task<IActionResult> Create([Bind("TripID,TripName,DateFrom,DateTo,PlanID")] Trips trips)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(trips);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Details), "Plan", new { id = trips.PlanID }); // Redirect to the details view of the plan
             }
             return View(trips);
         }
@@ -86,7 +88,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripID,TripName,DateFrom,DateTo")] Trips trips)
+        public async Task<IActionResult> Edit(int id, [Bind("TripID,PlanID,TripName,DateFrom,DateTo")] Trips trips)
         {
             if (id != trips.TripID)
             {
@@ -99,6 +101,8 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(trips);
                     await _context.SaveChangesAsync();
+                    ViewBag.DeleteSuccess = true;
+                    return View(trips);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -111,7 +115,6 @@ namespace NewVoyager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(trips);
         }
@@ -143,10 +146,12 @@ namespace NewVoyager.Controllers
             if (trips != null)
             {
                 _context.Trips.Remove(trips);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+           
+            ViewBag.DeleteSuccess = true;
+            return View(trips);
         }
 
         private bool TripsExists(int id)

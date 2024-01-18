@@ -7,25 +7,35 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewVoyager.Data;
 using NewVoyager.Models;
-using System.Security.Claims;
-using System.Configuration;
-
-
+using Microsoft.AspNetCore.Identity;
 namespace NewVoyager.Controllers
 {
     public class PlanController : Controller
     {
         private readonly VoyagerContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlanController(VoyagerContext context)
+
+        public PlanController(VoyagerContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Plan
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Plans.ToListAsync());
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized(); // or return NotFound();
+            }
+
+            var userPlans = await _context.Plans
+                .Where(p => p.AppUserID == user.Id)
+                .ToListAsync();
+
+            return View(userPlans);
         }
 
         // GET: Plan/Details/5
@@ -37,7 +47,8 @@ namespace NewVoyager.Controllers
             }
 
             var plans = await _context.Plans
-                .FirstOrDefaultAsync(m => m.PlanID == id);
+            .Include(p => p.Trips) // Include the trips in the query
+            .FirstOrDefaultAsync(m => m.PlanID == id);
             if (plans == null)
             {
                 return NotFound();
@@ -55,27 +66,41 @@ namespace NewVoyager.Controllers
         // POST: Plan/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-       
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("PlanID,PlanName,Attendees")] Plans plans)
-    {
-        if (ModelState.IsValid)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Attendees")] Plans plans)
         {
-            plans.AppUserID = User.FindFirstValue("Id");
+            if (ModelState.IsValid)
+            {
+                // Get the currently logged-in user
+                var user = await _userManager.GetUserAsync(User);
 
-            _context.Add(plans);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+        // Set the Voyager field with the user id
+                Console.WriteLine("USER ID: "+user.Id);
+                plans.AppUserID = user.Id;
+                _context.Add(plans);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(plans);
         }
 
-        // If ModelState is not valid, handle accordingly
-        var errors = ModelState.Values.SelectMany(v => v.Errors);
-        // Log or debug the errors
+        // GET: api/Plan/UserPlans
+        [HttpGet]
+        [Route("api/Plan/UserPlans")]
+        public async Task<IActionResult> GetUserPlans()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return Unauthorized(); // or return NotFound();
+            }
+            var userPlans = await _context.Plans
+                .Where(p => p.AppUserID == user.Id)
+                .ToListAsync();
 
-        return View(plans);
-    }
-
+            return Ok(userPlans); // Returns the list of plans as JSON
+        }
 
         // GET: Plan/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -98,7 +123,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlanID,PlanName,Attendees")] Plans plans)
+        public async Task<IActionResult> Edit(int id, [Bind("PlanID,AppUserID,PlanName,Attendees")] Plans plans)
         {
             if (id != plans.PlanID)
             {

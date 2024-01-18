@@ -34,6 +34,15 @@
     <form asp-action="Delete">
         <input type="hidden" asp-for="TripID" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
     </form>
 </div>
+@if (ViewBag.DeleteSuccess == true)
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            alert('Your changes were saved successfully!'); // Optional: Display a message
+            window.history.go(-2); // Go back to the previous page
+        });
+    </script>
+}

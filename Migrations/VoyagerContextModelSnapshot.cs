@@ -247,17 +247,14 @@ namespace NewVoyager.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderNum")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TripsTripID")
+                    b.Property<int?>("TripID")
                         .HasColumnType("int");
 
                     b.HasKey("EventID");
 
-                    b.HasIndex("TripsTripID");
+                    b.HasIndex("TripID");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Event", (string)null);
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>
@@ -269,21 +266,22 @@ namespace NewVoyager.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PlanID"));
 
                     b.Property<string>("AppUserID")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Attendees")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PlanName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("VoyagerID")
+                        .HasColumnType("int");
+
                     b.HasKey("PlanID");
 
                     b.HasIndex("AppUserID");
 
-                    b.ToTable("Plans", (string)null);
+                    b.HasIndex("VoyagerID");
+
+                    b.ToTable("Plan", (string)null);
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Trips", b =>
@@ -311,7 +309,7 @@ namespace NewVoyager.Migrations
 
                     b.HasIndex("PlanID");
 
-                    b.ToTable("Trips", (string)null);
+                    b.ToTable("Trip", (string)null);
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Voyager", b =>
@@ -386,20 +384,22 @@ namespace NewVoyager.Migrations
 
             modelBuilder.Entity("NewVoyager.Models.Events", b =>
                 {
-                    b.HasOne("NewVoyager.Models.Trips", "Trips")
+                    b.HasOne("NewVoyager.Models.Trips", "Trip")
                         .WithMany("Events")
-                        .HasForeignKey("TripsTripID");
+                        .HasForeignKey("TripID");
 
-                    b.Navigation("Trips");
+                    b.Navigation("Trip");
                 });
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>
                 {
                     b.HasOne("NewVoyager.Models.ApplicationUser", "AppUser")
                         .WithMany("Plans")
-                        .HasForeignKey("AppUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AppUserID");
+
+                    b.HasOne("NewVoyager.Models.Voyager", null)
+                        .WithMany("Plans")
+                        .HasForeignKey("VoyagerID");
 
                     b.Navigation("AppUser");
                 });
@@ -426,6 +426,11 @@ namespace NewVoyager.Migrations
             modelBuilder.Entity("NewVoyager.Models.Trips", b =>
                 {
                     b.Navigation("Events");
+                });
+
+            modelBuilder.Entity("NewVoyager.Models.Voyager", b =>
+                {
+                    b.Navigation("Plans");
                 });
 #pragma warning restore 612, 618
         }

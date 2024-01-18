@@ -16,11 +16,19 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.PlanName)
         </dd>
+        
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Attendees)
+            @Html.DisplayNameFor(model => model.PlanID)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Attendees)
+            @Html.DisplayFor(model => model.PlanID)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AppUserID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AppUserID)
         </dd>
                 <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.AppUser)
@@ -36,7 +44,37 @@
         </dd>
     </dl>
 </div>
+<h2>Trips</h2>
+<div>
+    <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="btn btn-primary">Add Trip</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Plan ID</th>
+            <th>Trip Name</th>
+            <th>Date From</th>
+            <th>Date To</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var trip in Model.Trips)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => trip.PlanID)</td>
+            <td>@Html.DisplayFor(modelItem => trip.TripName)</td>
+            <td>@Html.DisplayFor(modelItem => trip.DateFrom)</td>
+            <td>@Html.DisplayFor(modelItem => trip.DateTo)</td>
+            <td>
+                <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID">Edit</a> |
+                <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID">Details</a> |
+                <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.PlanID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>

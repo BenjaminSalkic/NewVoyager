@@ -30,7 +30,39 @@
         </dd>
     </dl>
 </div>
+
+ <h2>Events</h2>
+<!-- Add Event button -->
+<div>
+    <a asp-controller="Event" asp-action="Create" asp-route-tripId="@Model.TripID" class="btn btn-primary">Add Event</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Event Description</th>
+            <th>Date From</th>
+            <th>Date To</th>
+            <!-- ... other columns ... -->
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var dogadjaj in Model.Events)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => dogadjaj.Opis)</td>
+            <td>@Html.DisplayFor(modelItem => dogadjaj.DateFrom)</td>
+            <td>@Html.DisplayFor(modelItem => dogadjaj.DateTo)</td>
+            <td>
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">Edit</a> |
+                <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">Details</a> |
+                <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.TripID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>

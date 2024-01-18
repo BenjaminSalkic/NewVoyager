@@ -11,15 +11,17 @@
 </head>
 <body class="Body">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewVoyager</a>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewVoyager</a>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                       <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Voyager" asp-action="Index">Voyagers</a>
                         </li>
                         <li class="nav-item">
@@ -31,15 +33,16 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
                         </li>
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationUser" asp-action="Index">AppUser</a>
                         </li>
-                    </ul>
-                </div>
+                    }
+                </ul>
             </div>
-            <partial name="_LoginPartial" />
-        </nav>
-    </header>
+        </div>
+        <partial name="_LoginPartial" />
+    </nav>
+</header>
 
     <div class="containerB">
         <main role="main" class="pb-3">
