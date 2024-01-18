@@ -48,6 +48,7 @@ namespace NewVoyager.Controllers
 
             var plans = await _context.Plans
             .Include(p => p.Trips) // Include the trips in the query
+            .ThenInclude(t => t.Events)
             .FirstOrDefaultAsync(m => m.PlanID == id);
             if (plans == null)
             {
