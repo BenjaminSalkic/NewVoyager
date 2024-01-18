@@ -12,8 +12,8 @@ using NewVoyager.Data;
 namespace NewVoyager.Migrations
 {
     [DbContext(typeof(VoyagerContext))]
-    [Migration("20240118130648_FreshStart")]
-    partial class FreshStart
+    [Migration("20240118143412_Amin")]
+    partial class Amin
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

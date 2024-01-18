@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NewVoyager.Migrations
 {
     /// <inheritdoc />
-    public partial class FreshStart : Migration
+    public partial class GodHelpUs : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
