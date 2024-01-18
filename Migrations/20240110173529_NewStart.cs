@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NewVoyager.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class NewStart : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -173,28 +173,28 @@ namespace NewVoyager.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Plan",
+                name: "Plans",
                 columns: table => new
                 {
                     PlanID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PlanName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    VoyagerID = table.Column<int>(type: "int", nullable: false),
+                    AppUserID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Attendees = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Plan", x => x.PlanID);
+                    table.PrimaryKey("PK_Plans", x => x.PlanID);
                     table.ForeignKey(
-                        name: "FK_Plan_Voyager_VoyagerID",
-                        column: x => x.VoyagerID,
-                        principalTable: "Voyager",
-                        principalColumn: "ID",
+                        name: "FK_Plans_AspNetUsers_AppUserID",
+                        column: x => x.AppUserID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Trip",
+                name: "Trips",
                 columns: table => new
                 {
                     TripID = table.Column<int>(type: "int", nullable: false)
@@ -206,16 +206,16 @@ namespace NewVoyager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trip", x => x.TripID);
+                    table.PrimaryKey("PK_Trips", x => x.TripID);
                     table.ForeignKey(
-                        name: "FK_Trip_Plan_PlanID",
+                        name: "FK_Trips_Plans_PlanID",
                         column: x => x.PlanID,
-                        principalTable: "Plan",
+                        principalTable: "Plans",
                         principalColumn: "PlanID");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Event",
+                name: "Events",
                 columns: table => new
                 {
                     EventID = table.Column<int>(type: "int", nullable: false)
@@ -228,11 +228,11 @@ namespace NewVoyager.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Event", x => x.EventID);
+                    table.PrimaryKey("PK_Events", x => x.EventID);
                     table.ForeignKey(
-                        name: "FK_Event_Trip_TripsTripID",
+                        name: "FK_Events_Trips_TripsTripID",
                         column: x => x.TripsTripID,
-                        principalTable: "Trip",
+                        principalTable: "Trips",
                         principalColumn: "TripID");
                 });
 
@@ -276,18 +276,18 @@ namespace NewVoyager.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Event_TripsTripID",
-                table: "Event",
+                name: "IX_Events_TripsTripID",
+                table: "Events",
                 column: "TripsTripID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Plan_VoyagerID",
-                table: "Plan",
-                column: "VoyagerID");
+                name: "IX_Plans_AppUserID",
+                table: "Plans",
+                column: "AppUserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Trip_PlanID",
-                table: "Trip",
+                name: "IX_Trips_PlanID",
+                table: "Trips",
                 column: "PlanID");
         }
 
@@ -310,22 +310,22 @@ namespace NewVoyager.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Event");
+                name: "Events");
+
+            migrationBuilder.DropTable(
+                name: "Voyager");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
+                name: "Trips");
+
+            migrationBuilder.DropTable(
+                name: "Plans");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
-                name: "Trip");
-
-            migrationBuilder.DropTable(
-                name: "Plan");
-
-            migrationBuilder.DropTable(
-                name: "Voyager");
         }
     }
 }

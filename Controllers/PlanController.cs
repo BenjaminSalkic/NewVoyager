@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewVoyager.Data;
 using NewVoyager.Models;
+using System.Security.Claims;
+using System.Configuration;
+
 
 namespace NewVoyager.Controllers
 {
@@ -52,18 +55,27 @@ namespace NewVoyager.Controllers
         // POST: Plan/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Attendees")] Plans plans)
+       
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create([Bind("PlanID,PlanName,Attendees")] Plans plans)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(plans);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(plans);
+            plans.AppUserID = User.FindFirstValue("Id");
+
+            _context.Add(plans);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
+
+        // If ModelState is not valid, handle accordingly
+        var errors = ModelState.Values.SelectMany(v => v.Errors);
+        // Log or debug the errors
+
+        return View(plans);
+    }
+
 
         // GET: Plan/Edit/5
         public async Task<IActionResult> Edit(int? id)

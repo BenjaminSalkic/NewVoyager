@@ -23,14 +23,14 @@ namespace NewVoyager.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Voyager>().ToTable("Voyager");
-            modelBuilder.Entity<Events>().ToTable("Event");
-            modelBuilder.Entity<Plans>().ToTable("Plan");
-            modelBuilder.Entity<Trips>().ToTable("Trip");
+            modelBuilder.Entity<Events>().ToTable("Events");
+            modelBuilder.Entity<Plans>().ToTable("Plans");
+            modelBuilder.Entity<Trips>().ToTable("Trips");
 
-            modelBuilder.Entity<Plans>()
-            .HasOne(p => p.Voyager)
-            .WithMany(v => v.Plans)
-            .HasForeignKey(p => p.VoyagerID);
+           modelBuilder.Entity<Plans>()
+            .HasOne(p => p.AppUser)
+            .WithMany(u => u.Plans)
+            .HasForeignKey(p => p.AppUserID);
                 
            
         }

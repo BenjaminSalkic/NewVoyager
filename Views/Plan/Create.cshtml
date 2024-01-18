@@ -1,4 +1,5 @@
 @model NewVoyager.Models.Plans
+@using System.Security.Claims
 
 @{
     ViewData["Title"] = "Create";
@@ -12,11 +13,7 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-              <div class="form-group">
-                <label asp-for="Voyager" class="control-label"></label>
-                <input asp-for="Voyager" class="form-control" />
-                <span asp-validation-for="Voyager" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="AppUserID" value="@User.FindFirstValue("PersonalID")" />
             <div class="form-group">
                 <label asp-for="PlanName" class="control-label"></label>
                 <input asp-for="PlanName" class="form-control" />
