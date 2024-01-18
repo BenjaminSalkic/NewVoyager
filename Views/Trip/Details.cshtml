@@ -53,12 +53,16 @@
             <td>@Html.DisplayFor(modelItem => dogadjaj.Opis)</td>
             <td>@Html.DisplayFor(modelItem => dogadjaj.DateFrom)</td>
             <td>@Html.DisplayFor(modelItem => dogadjaj.DateTo)</td>
-            <!-- ... other cells ... -->
+            <td>
+                <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">Edit</a> |
+                <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">Details</a> |
+                <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">Delete</a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.TripID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>

@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="PlanID" />
+            <input type="hidden" asp-for="AppUserID" />
             <div class="form-group">
                 <label asp-for="PlanName" class="control-label"></label>
                 <input asp-for="PlanName" class="form-control" />
@@ -26,6 +27,6 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>
 

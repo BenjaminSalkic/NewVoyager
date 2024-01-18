@@ -88,7 +88,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TripID,TripName,DateFrom,DateTo")] Trips trips)
+        public async Task<IActionResult> Edit(int id, [Bind("TripID,PlanID,TripName,DateFrom,DateTo")] Trips trips)
         {
             if (id != trips.TripID)
             {
@@ -101,6 +101,8 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(trips);
                     await _context.SaveChangesAsync();
+                    ViewBag.DeleteSuccess = true;
+                    return View(trips);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -113,7 +115,6 @@ namespace NewVoyager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(trips);
         }
@@ -145,10 +146,12 @@ namespace NewVoyager.Controllers
             if (trips != null)
             {
                 _context.Trips.Remove(trips);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+           
+            ViewBag.DeleteSuccess = true;
+            return View(trips);
         }
 
         private bool TripsExists(int id)

@@ -53,11 +53,16 @@
             <td>@Html.DisplayFor(modelItem => trip.TripName)</td>
             <td>@Html.DisplayFor(modelItem => trip.DateFrom)</td>
             <td>@Html.DisplayFor(modelItem => trip.DateTo)</td>
+            <td>
+                <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID">Edit</a> |
+                <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID">Details</a> |
+                <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID">Delete</a>
+            </td>
         </tr>
     }
     </tbody>
 </table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.PlanID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>

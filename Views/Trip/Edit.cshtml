@@ -13,6 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="TripID" />
+            <input type="hidden" asp-for="PlanID" />
             <div class="form-group">
                 <label asp-for="TripName" class="control-label"></label>
                 <input asp-for="TripName" class="form-control" />
@@ -36,6 +37,14 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>
-
+@if (ViewBag.EditSuccess == true)
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            alert('Your changes were saved successfully!'); // Optional: Display a message
+            window.history.go(-2); // Go back to the previous page
+        });
+    </script>
+}

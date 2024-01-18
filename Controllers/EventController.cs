@@ -87,7 +87,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventID,Opis,DateFrom,DateTo")] Events events)
+        public async Task<IActionResult> Edit(int id, [Bind("EventID,TripID,Opis,DateFrom,DateTo")] Events events)
         {
             if (id != events.EventID)
             {
@@ -100,6 +100,8 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(events);
                     await _context.SaveChangesAsync();
+                    ViewBag.EditSuccess = true;
+                    return View(events);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -112,7 +114,6 @@ namespace NewVoyager.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
             return View(events);
         }
@@ -144,10 +145,12 @@ namespace NewVoyager.Controllers
             if (events != null)
             {
                 _context.Events.Remove(events);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            // Pass a flag to the view indicating success
+            ViewBag.DeleteSuccess = true;
+            return View(events); // Return to the same delete view or a custom 'DeleteSuccess' view
         }
 
         private bool EventsExists(int id)
