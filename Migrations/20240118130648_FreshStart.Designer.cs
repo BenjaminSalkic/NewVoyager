@@ -12,8 +12,8 @@ using NewVoyager.Data;
 namespace NewVoyager.Migrations
 {
     [DbContext(typeof(VoyagerContext))]
-    [Migration("20240117234523_fix5")]
-    partial class fix5
+    [Migration("20240118130648_FreshStart")]
+    partial class FreshStart
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -275,14 +275,9 @@ namespace NewVoyager.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VoyagerID")
-                        .HasColumnType("int");
-
                     b.HasKey("PlanID");
 
                     b.HasIndex("AppUserID");
-
-                    b.HasIndex("VoyagerID");
 
                     b.ToTable("Plan", (string)null);
                 });
@@ -400,10 +395,6 @@ namespace NewVoyager.Migrations
                         .WithMany("Plans")
                         .HasForeignKey("AppUserID");
 
-                    b.HasOne("NewVoyager.Models.Voyager", null)
-                        .WithMany("Plans")
-                        .HasForeignKey("VoyagerID");
-
                     b.Navigation("AppUser");
                 });
 
@@ -429,11 +420,6 @@ namespace NewVoyager.Migrations
             modelBuilder.Entity("NewVoyager.Models.Trips", b =>
                 {
                     b.Navigation("Events");
-                });
-
-            modelBuilder.Entity("NewVoyager.Models.Voyager", b =>
-                {
-                    b.Navigation("Plans");
                 });
 #pragma warning restore 612, 618
         }
