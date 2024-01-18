@@ -6,8 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NewVoyager.Data;
+using Microsoft.Data.SqlClient;
 using NewVoyager.Models;
 using Microsoft.AspNetCore.Identity;
+
 namespace NewVoyager.Controllers
 {
     public class PlanController : Controller
