@@ -4,6 +4,10 @@ for details on configuring this project to bundle and minify static web assets. 
 .containerB{
   width: 100%;
 }
+.container{
+  align-items: center;
+  text-align: center;
+}
 
 a.navbar-brand {
   white-space: normal;
@@ -18,23 +22,10 @@ a {
   display: flex;
 }
 
-.sidebar {
-  min-width: 250px;
-  max-width: 250px;
-  background: #343a40;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-.sidebar.active {
-  width: 50px;
-}
-
 .content {
   flex: 1;
   padding: 15px;
 }
-
 
 .btn-primary {
   color: #fff;
@@ -69,5 +60,54 @@ button.accept-policy {
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px;
+  line-height: 61px;
 }
+.left{
+  padding-top: 3rem;
+  float: left;
+  width: 70%;
+  height: 86vh; /* 100% of the viewport height */
+  background-color: #ffcccc; /* Left div background color */
+}
+.right{
+  align-items: center;
+  position: relative;
+  float: right;
+  padding: 5px;
+  width: 30%;
+  height: 86vh; /* 100% of the viewport height */
+  background-color: #ccffcc; /* Right div background color */
+}
+.inpt{
+  position: absolute;
+  bottom: 20px;
+  input{
+    width: 25rem;
+    height: 5rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  button{
+    height: 5rem;
+    width: 6rem;
+    background-color: lightgray;
+    border-radius: 5px;
+  }
+}
+.outpt{
+    width: 31rem;
+    height: 37rem;
+    padding: 15px;
+    font-family: monospace;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .gif{
+      width: 3rem;
+      height: 3rem;
+    }
+  }

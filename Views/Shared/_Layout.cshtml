@@ -16,25 +16,10 @@
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewVoyager</a>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Voyager" asp-action="Index">Voyagers</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Plan" asp-action="Index">Plans</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Trip" asp-action="Index">Trips</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Event" asp-action="Index">Events</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ApplicationUser" asp-action="Index">AppUser</a>
                         </li>
                     }
                 </ul>
@@ -46,7 +31,25 @@
 
     <div class="containerB">
         <main role="main" class="pb-3">
-            @RenderBody()
+             @if (User.Identity.IsAuthenticated)
+            {
+                <div class="left">
+                    @RenderBody()
+                </div>
+                <div class="right">
+                    <div class="outpt" >
+                        <div id="responseDiv">
+                            <img class="gif" id="loadingGif" src="~/css/loading.gif" style="display: none;" />
+                        </div>
+                    </div>
+                    <div class="inpt">
+                            <input type="text" id="inputText" placeholder="Send a message ...">
+                            <button id="submitButton" >Submit</button>
+                    </div>
+                </div>
+            }else{
+                @RenderBody()
+            }
         </main>
     </div>
 
@@ -58,5 +61,29 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#submitButton").click(function(){
+                var query = $("#inputText").val();
+                $("#loadingGif").show();
+                $.ajax({
+                    url: '/api/OpenAI/UseChatGPT',
+                    type: 'GET',
+                    data: { query: query },
+                    success: function(data) {
+                        $("#loadingGif").hide();
+                        console.log(data)
+                        var textContent = data.value.choices[0].message.textContent;
+                        $("#responseDiv").text(textContent);
+                    },
+                    error: function(error) {
+                        $("#loadingGif").hide();
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

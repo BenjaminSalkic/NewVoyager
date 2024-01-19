@@ -5,6 +5,10 @@ for details on configuring this project to bundle and minify static web assets. 
 .containerB[b-wx7riv4yd6]{
   width: 100%;
 }
+.container[b-wx7riv4yd6]{
+  align-items: center;
+  text-align: center;
+}
 
 a.navbar-brand[b-wx7riv4yd6] {
   white-space: normal;
@@ -19,23 +23,10 @@ a[b-wx7riv4yd6] {
   display: flex;
 }
 
-.sidebar[b-wx7riv4yd6] {
-  min-width: 250px;
-  max-width: 250px;
-  background: #343a40;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-.sidebar.active[b-wx7riv4yd6] {
-  width: 50px;
-}
-
 .content[b-wx7riv4yd6] {
   flex: 1;
   padding: 15px;
 }
-
 
 .btn-primary[b-wx7riv4yd6] {
   color: #fff;
@@ -70,5 +61,54 @@ button.accept-policy[b-wx7riv4yd6] {
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px;
+  line-height: 61px;
 }
+.left[b-wx7riv4yd6]{
+  padding-top: 3rem;
+  float: left;
+  width: 70%;
+  height: 86vh; /* 100% of the viewport height */
+  background-color: #ffcccc; /* Left div background color */
+}
+.right[b-wx7riv4yd6]{
+  align-items: center;
+  position: relative;
+  float: right;
+  padding: 5px;
+  width: 30%;
+  height: 86vh; /* 100% of the viewport height */
+  background-color: #ccffcc; /* Right div background color */
+}
+.inpt[b-wx7riv4yd6]{
+  position: absolute;
+  bottom: 20px;
+  input{
+    width: 25rem;
+    height: 5rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  button[b-wx7riv4yd6]{
+    height: 5rem;
+    width: 6rem;
+    background-color: lightgray;
+    border-radius: 5px;
+  }
+}
+.outpt[b-wx7riv4yd6]{
+    width: 31rem;
+    height: 37rem;
+    padding: 15px;
+    font-family: monospace;
+    overflow: auto;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .gif{
+      width: 3rem;
+      height: 3rem;
+    }
+  }

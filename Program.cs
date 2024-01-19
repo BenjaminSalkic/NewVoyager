@@ -5,19 +5,22 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("AzureContext");
-
 // Add services to the container. 
 builder.Services.AddControllersWithViews();
 
+var connectionString = builder.Configuration.GetConnectionString("AzureContext");
+
 builder.Services.AddDbContext<VoyagerContext>(options =>
-            options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<VoyagerContext>();
 
+// Configure your settings here before builder.Build()
+builder.Services.Configure<AppSettings>(builder.Configuration);
 
+// Now build the app
 var app = builder.Build();
 
 
@@ -25,18 +28,18 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.MapRazorPages();
-
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",

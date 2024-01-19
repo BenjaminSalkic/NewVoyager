@@ -512,3 +512,15 @@ C:\Users\stefa\OneDrive\Desktop\NewVoyager\obj\Debug\net8.0\refint\NewVoyager.dl
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\obj\Debug\net8.0\NewVoyager.pdb
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\obj\Debug\net8.0\NewVoyager.genruntimeconfig.cache
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\obj\Debug\net8.0\ref\NewVoyager.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\OpenAI_API.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.Mvc.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.Razor.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.Helpers.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\MailKit.dll
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\MimeKit.dll

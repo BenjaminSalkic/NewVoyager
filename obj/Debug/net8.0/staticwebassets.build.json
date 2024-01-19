@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "VDtMRBr1HACaqVrsjVWrMl3c0D2991f7byea9BwuOfw=",
+  "Hash": "GDCkCsCZmsZaEiczdzxBJgT0Ed1i547DTpXPhQCwqGA=",
   "Source": "NewVoyager",
   "BasePath": "_content/NewVoyager",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\NewVoyager.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\loading.gif",
+      "SourceId": "NewVoyager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
+      "BasePath": "_content/NewVoyager",
+      "RelativePath": "css/loading.gif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\loading.gif"
     },
     {
       "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\site.css",

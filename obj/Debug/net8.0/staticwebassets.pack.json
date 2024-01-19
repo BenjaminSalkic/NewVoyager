@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\NewVoyager.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\loading.gif",
+      "PackagePath": "staticwebassets\\css\\loading.gif"
+    },
+    {
       "Id": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
