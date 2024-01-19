@@ -12,12 +12,14 @@
     <div class="btn-AddTrip-container">
         <p class="trips-header">Trips</p>
         <div class="btn-AddTrip">
-            <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="btn btn-primary">Add Trip</a>
+            <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="">
+                <img style="width: 1.9rem; height: 1.9rem;" src="~/images/plus_icon.svg" alt="Add Trip">
+            </a>
         </div>
     </div>
     <div class="container-fluid kartice-container">
         <div class="row">
-        @if(Model.Trips != null)
+        @if(Model.Trips != null && Model.Trips.Any())
         {
             @foreach (var trip in Model.Trips)
             {
@@ -57,9 +59,6 @@
                         <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">
                             <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
                         </a> |
-                        <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID" class="btn btn-link">
-                            <img class="icons" src="~/images/details_icon1.svg" alt="Details">
-                        </a> |
                         <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">
                             <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
                         </a>
@@ -69,7 +68,9 @@
         }
         else
         {
-            <p style="font-size: 1.5rem;">There are no trips for this plan yet!</p>
+            <div style="text-align: center;">
+                <p style="font-size: 1.5rem;">There are no trips for this plan yet!</p>
+            </div>
         }
         </div>
     </div>

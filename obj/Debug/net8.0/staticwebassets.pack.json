@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\NewVoyager.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\create.css",
+      "PackagePath": "staticwebassets\\css\\create.css"
+    },
+    {
+      "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\delete.css",
+      "PackagePath": "staticwebassets\\css\\delete.css"
+    },
+    {
       "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\planDetails.css",
       "PackagePath": "staticwebassets\\css\\planDetails.css"
     },

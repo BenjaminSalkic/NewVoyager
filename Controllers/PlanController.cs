@@ -177,13 +177,12 @@ namespace NewVoyager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var plans = await _context.Plans.FindAsync(id);
-            if (plans != null)
+            var plan = await _context.Plans.FindAsync(id);
+            if (plan != null)
             {
-                _context.Plans.Remove(plans);
+                _context.Plans.Remove(plan);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

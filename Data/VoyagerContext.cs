@@ -28,14 +28,21 @@ namespace NewVoyager.Data
             modelBuilder.Entity<Trips>().ToTable("Trip");
 
             modelBuilder.Entity<Plans>()
-            .HasOne(p => p.AppUser)
-            .WithMany(v => v.Plans)
-            .HasForeignKey(p => p.AppUserID);
-            
-             modelBuilder.Entity<Trips>()
-                .HasMany(t => t.Events)
-                .WithOne(e => e.Trip)
-                .HasForeignKey(e => e.TripID);
+            .HasMany(p => p.Trips) // Define the relationship: Plans has many Trips
+            .WithOne(t => t.Plan) // Each Trip has one Plan
+            .HasForeignKey(t => t.PlanID) // Foreign key in Trips pointing to Plans
+            .OnDelete(DeleteBehavior.Cascade); // Add cascade delete behavior
+
+            modelBuilder.Entity<Trips>()
+                .HasMany(t => t.Events) // Define the relationship: Trips has many Events
+                .WithOne(e => e.Trip) // Each Event has one Trip
+                .HasForeignKey(e => e.TripID) // Foreign key in Events pointing to Trips
+                .OnDelete(DeleteBehavior.Cascade); // Add cascade delete behavior
+
+            modelBuilder.Entity<Plans>()
+                .HasOne(p => p.AppUser)
+                .WithMany(v => v.Plans)
+                .HasForeignKey(p => p.AppUserID);
            
         }
     }

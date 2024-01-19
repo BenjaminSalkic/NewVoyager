@@ -3,41 +3,37 @@
 @{
     ViewData["Title"] = "Details";
 }
+<link rel="stylesheet" type="text/css" href="~/css/delete.css">
 
-<h1>Details</h1>
+<div class="head">Event details:</div>
 
-<div>
-    <h4>Events</h4>
     <hr />
+<div class="delete-container">
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TripID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TripID)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-6 element" style="text-align: right;">
             @Html.DisplayNameFor(model => model.Opis)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-6 element" style="text-align: left;">
             @Html.DisplayFor(model => model.Opis)
         </dd>
         
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateFrom)
+        <dt class = "col-sm-6 element" style="text-align: right;">
+            Date from:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-6 element" style="text-align: left;">
             @Html.DisplayFor(model => model.DateFrom)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateTo)
+        <dt class = "col-sm-6 element" style="text-align: right;">
+            Date to:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-6 element" style="text-align: left;">
             @Html.DisplayFor(model => model.DateTo)
         </dd>
+        <dt>
+            <a asp-action="Edit" asp-route-id="@Model?.EventID" class="btn btn-secondary">Edit</a> |
+            <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
+        </dt>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.EventID">Edit</a> |
-    <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>
