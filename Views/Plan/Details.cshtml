@@ -24,7 +24,7 @@
             @foreach (var trip in Model.Trips)
             {
                 <div class="card col-3 mb-3" style="margin: auto">
-                    <div class="card-header">
+                    <div class="card-header" style="background-color:#815854; color:#F9EBDE;">
                         @Html.DisplayFor(modelItem => trip.TripName)
                         <br>
                         @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
@@ -55,11 +55,11 @@
                             <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
                         </a>
                     </div>
-                    <div class="card-footer">
-                        <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">
+                    <div class="card-footer" style="background-color:#815854; color:#F9EBDE;">
+                        <a asp-controller="Trip" style="background-color:#F9EBDE; color:#815854;" asp-action="Edit" asp-route-id="@trip.TripID" class="btn ">
                             <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
                         </a> |
-                        <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">
+                        <a asp-controller="Trip" style="background-color:#F9EBDE; color:#815854;" asp-action="Delete" asp-route-id="@trip.TripID" class="btn ">
                             <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
                         </a>
                     </div>

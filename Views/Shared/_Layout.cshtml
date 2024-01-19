@@ -12,7 +12,7 @@
 </head>
 <body class="Body">
     <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-#815854 styl border-bottom box-shadow ">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">NewVoyager</a>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -20,7 +20,7 @@
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plan" asp-action="Index">Plans</a>
+                            <a class="nav" asp-area="" asp-controller="Plan" asp-action="Index">Plans</a>
                         </li>
                     }
                 </ul>
@@ -54,7 +54,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer ">
         <div class="container">
             &copy; 2023 - NewVoyager 
         </div>

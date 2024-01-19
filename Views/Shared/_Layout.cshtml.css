@@ -1,6 +1,8 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-
+.styl{
+  color: #F9EBDE;
+}
 .containerB{
   width: 100%;
 }
@@ -16,7 +18,7 @@ a.navbar-brand {
 }
 
 a {
-  color: #0077cc;
+  color: #F9EBDE;
 }
 .wrapper {
   display: flex;
@@ -28,22 +30,22 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #F9EBDE;
+  background-color: #815854;
+  border-color: #F9EBDE;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #F9EBDE;
+  background-color: #815854;
+  border-color: #F9EBDE;
 }
 
 .border-top {
-  border-top: 1px solid #e5e5e5;
+  border-top: 1px solid #F9EBDE
 }
 .border-bottom {
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #F9EBDE;
 }
 
 .box-shadow {
@@ -56,6 +58,8 @@ button.accept-policy {
 }
 
 .footer {
+  background-color: #815854;
+  color: #F9EBDE;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -63,11 +67,10 @@ button.accept-policy {
   line-height: 61px;
 }
 .left{
-  padding-top: 3rem;
   float: left;
   width: 70%;
-  height: 86vh; /* 100% of the viewport height */
-  background-color: #ffcccc; /* Left div background color */
+  height: 84vh; /* 100% of the viewport height */
+  background-color: #F9EBDE; /* Left div background color */
 }
 .right{
   align-items: center;
@@ -75,22 +78,30 @@ button.accept-policy {
   float: right;
   padding: 5px;
   width: 30%;
-  height: 86vh; /* 100% of the viewport height */
-  background-color: #ccffcc; /* Right div background color */
+  height: 84vh; /* 100% of the viewport height */
+  background-color: #815854; /* Right div background color */
 }
 .inpt{
   position: absolute;
-  bottom: 20px;
+  bottom: 10px;
   input{
     width: 25rem;
     height: 5rem;
+    border: 3px solid #F9EBDE;
     border-radius: 5px;
     text-align: center;
+  }
+  input, select,textarea{
+    color:#815854 ;
+    background-color: #F9EBDE;
+    border: none;
   }
   button{
     height: 5rem;
     width: 6rem;
-    background-color: lightgray;
+    color: #815854;
+    border: 3px solid #815854;
+    background-color: #F9EBDE;
     border-radius: 5px;
   }
 }
@@ -100,8 +111,8 @@ button.accept-policy {
     padding: 15px;
     font-family: monospace;
     overflow: auto;
-    background-color: white;
-    border: 1px solid lightgray;
+    background-color: #F9EBDE;
+    border: 1px solid #815854;
     border-radius: 5px;
     display: flex;
     justify-content: center;
