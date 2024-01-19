@@ -1,10 +1,6 @@
 {
   "Version": 1,
-<<<<<<< HEAD
-  "Hash": "LSRS2M+FgV2CLr4dsBoEQPqvKMehkXLZHBkYBweqW1g=",
-=======
-  "Hash": "IlV/zRGpSUfZrqFKkRxGiIijJ1R9jlIB7KxeUIoKRl4=",
->>>>>>> stefan
+  "Hash": "6e/ZF+NxxAVVgbdc1x3LcxSKfFR8FJaTXvIlY5e75kc=",
   "Source": "NewVoyager",
   "BasePath": "_content/NewVoyager",
   "Mode": "Default",
@@ -1199,13 +1195,10 @@
       "OriginalItemSpec": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\NewVoyager.bundle.scp.css"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\icon.png",
-=======
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\create.css",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\create.css",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "css/create.css",
       "AssetKind": "All",
@@ -1221,10 +1214,10 @@
       "OriginalItemSpec": "wwwroot\\css\\create.css"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\delete.css",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\delete.css",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "css/delete.css",
       "AssetKind": "All",
@@ -1240,46 +1233,7 @@
       "OriginalItemSpec": "wwwroot\\css\\delete.css"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\planDetails.css",
-      "SourceId": "NewVoyager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
-      "BasePath": "_content/NewVoyager",
-      "RelativePath": "css/planDetails.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\planDetails.css"
-    },
-    {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\planIndex.css",
-      "SourceId": "NewVoyager",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
-      "BasePath": "_content/NewVoyager",
-      "RelativePath": "css/planIndex.css",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\planIndex.css"
-    },
-    {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\site.css",
->>>>>>> stefan
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\icon.png",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
@@ -1315,6 +1269,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\loading.gif"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\planDetails.css",
+      "SourceId": "NewVoyager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
+      "BasePath": "_content/NewVoyager",
+      "RelativePath": "css/planDetails.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\planDetails.css"
+    },
+    {
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\planIndex.css",
+      "SourceId": "NewVoyager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
+      "BasePath": "_content/NewVoyager",
+      "RelativePath": "css/planIndex.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\planIndex.css"
     },
     {
       "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\css\\site.css",
@@ -1355,13 +1347,10 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-<<<<<<< HEAD
-      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\js\\site.js",
-=======
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\delete_icon.svg",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\images\\delete_icon.svg",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "images/delete_icon.svg",
       "AssetKind": "All",
@@ -1377,10 +1366,10 @@
       "OriginalItemSpec": "wwwroot\\images\\delete_icon.svg"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\details_icon1.svg",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\images\\details_icon1.svg",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "images/details_icon1.svg",
       "AssetKind": "All",
@@ -1396,10 +1385,10 @@
       "OriginalItemSpec": "wwwroot\\images\\details_icon1.svg"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\edit_icon.svg",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\images\\edit_icon.svg",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "images/edit_icon.svg",
       "AssetKind": "All",
@@ -1415,10 +1404,10 @@
       "OriginalItemSpec": "wwwroot\\images\\edit_icon.svg"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\plus_icon.svg",
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\images\\plus_icon.svg",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
       "RelativePath": "images/plus_icon.svg",
       "AssetKind": "All",
@@ -1434,8 +1423,7 @@
       "OriginalItemSpec": "wwwroot\\images\\plus_icon.svg"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\js\\site.js",
->>>>>>> stefan
+      "Identity": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\js\\site.js",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\PC\\Desktop\\FRI\\NewVoyager\\wwwroot\\",
