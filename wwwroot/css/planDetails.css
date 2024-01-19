@@ -10,6 +10,7 @@
 }
 .btn-AddTrip-container{
     display: flex;
+    margin-top: 15px;
 }
 .btn-AddTrip{
     position: absolute;

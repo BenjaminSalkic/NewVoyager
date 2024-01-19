@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\planDetails.css"
     },
     {
+      "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\planIndex.css",
+      "PackagePath": "staticwebassets\\css\\planIndex.css"
+    },
+    {
       "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -21,8 +25,8 @@
       "PackagePath": "staticwebassets\\images\\delete_icon.svg"
     },
     {
-      "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\details_icon.svg",
-      "PackagePath": "staticwebassets\\images\\details_icon.svg"
+      "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\details_icon1.svg",
+      "PackagePath": "staticwebassets\\images\\details_icon1.svg"
     },
     {
       "Id": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\edit_icon.svg",

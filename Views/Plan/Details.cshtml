@@ -17,52 +17,59 @@
     </div>
     <div class="container-fluid kartice-container">
         <div class="row">
-            @foreach (var trip in Model.Trips)
+        @if(Model.Trips != null)
         {
-            <div class="card col-3 mb-3" style="margin: auto">
-                <div class="card-header">
-                    @Html.DisplayFor(modelItem => trip.TripName)
-                    <br>
-                    @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
-                </div>
-                <div class="card-body">
-                    @if (trip.Events != null && trip.Events.Any()) // Check if there are any events
-                        {
-                            foreach (var dogadjaj in trip.Events)
+            @foreach (var trip in Model.Trips)
+            {
+                <div class="card col-3 mb-3" style="margin: auto">
+                    <div class="card-header">
+                        @Html.DisplayFor(modelItem => trip.TripName)
+                        <br>
+                        @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
+                    </div>
+                    <div class="card-body">
+                        @if (trip.Events != null && trip.Events.Any()) // Check if there are any events
                             {
-                                <div class="event-container form-check">
-                                    <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
-                                    <label class="form-check-label" for="event_@dogadjaj.EventID">  @dogadjaj.Opis</label>
-                                        <div class="event-actions">
-                                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
-                                            </a> |
-                                            <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/details_icon.svg" alt="Details">
-                                            </a> |
-                                            <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
-                                            </a>
-                                        </div>
-                                </div>
+                                foreach (var dogadjaj in trip.Events)
+                                {
+                                    <div class="event-container form-check">
+                                        <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
+                                        <label class="form-check-label" for="event_@dogadjaj.EventID">  @dogadjaj.Opis</label>
+                                            <div class="event-actions">
+                                                <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
+                                                    <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
+                                                </a> |
+                                                <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">
+                                                    <img class="event-icons" src="~/images/details_icon1.svg" alt="Details">
+                                                </a> |
+                                                <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">
+                                                    <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
+                                                </a>
+                                            </div>
+                                    </div>
+                                }
                             }
-                        }
-                    <a asp-controller="Event" asp-action="Create" asp-route-tripId="@trip.TripID" class="">
-                        <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
-                    </a>
+                        <a asp-controller="Event" asp-action="Create" asp-route-tripId="@trip.TripID" class="">
+                            <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
+                        </a>
+                    </div>
+                    <div class="card-footer">
+                        <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">
+                            <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
+                        </a> |
+                        <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID" class="btn btn-link">
+                            <img class="icons" src="~/images/details_icon1.svg" alt="Details">
+                        </a> |
+                        <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">
+                            <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
+                        </a>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">
-                        <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
-                    </a> |
-                    <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID" class="btn btn-link">
-                        <img class="icons" src="~/images/details_icon.svg" alt="Details">
-                    </a> |
-                    <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">
-                        <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
-                    </a>
-                </div>
-            </div>
+            }
+        }
+        else
+        {
+            <p style="font-size: 1.5rem;">There are no trips for this plan yet!</p>
         }
         </div>
     </div>

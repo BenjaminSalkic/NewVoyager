@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KI/m5pdgJIwemwQzwxqDy9myGps9tf0ZFAxIJbPLGpM=",
+  "Hash": "Z4qID0ZdenfQTo/ssmqd1GTof0CHpgjGr5fDc1/5BGU=",
   "Source": "NewVoyager",
   "BasePath": "_content/NewVoyager",
   "Mode": "Default",
@@ -1214,6 +1214,25 @@
       "OriginalItemSpec": "wwwroot\\css\\planDetails.css"
     },
     {
+      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\planIndex.css",
+      "SourceId": "NewVoyager",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
+      "BasePath": "_content/NewVoyager",
+      "RelativePath": "css/planIndex.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\planIndex.css"
+    },
+    {
       "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\css\\site.css",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
@@ -1271,12 +1290,12 @@
       "OriginalItemSpec": "wwwroot\\images\\delete_icon.svg"
     },
     {
-      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\details_icon.svg",
+      "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\details_icon1.svg",
       "SourceId": "NewVoyager",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\",
       "BasePath": "_content/NewVoyager",
-      "RelativePath": "images/details_icon.svg",
+      "RelativePath": "images/details_icon1.svg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1287,7 +1306,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\details_icon.svg"
+      "OriginalItemSpec": "wwwroot\\images\\details_icon1.svg"
     },
     {
       "Identity": "C:\\Users\\stefa\\OneDrive\\Desktop\\NewVoyager\\wwwroot\\images\\edit_icon.svg",
