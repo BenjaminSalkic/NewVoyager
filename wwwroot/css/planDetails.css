@@ -1,6 +1,7 @@
 .kartice-container{
     margin-top: 15px;
     margin-bottom: 60px;
+    overflow-y: auto;
 }
 .plan-ime{
     margin: auto;
