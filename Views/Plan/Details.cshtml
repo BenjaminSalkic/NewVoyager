@@ -3,31 +3,17 @@
 @{
     ViewData["Title"] = "Details";
 }
-
+<link rel="stylesheet" type="text/css" href="~/css/planDetails.css">
 <div class="planovi">
-    <div>
-        <h4>Plans</h4>
-        <hr />
-        <dl class="row">
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.PlanName)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PlanName)
-            </dd>
-            
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.PlanID)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.PlanID)
-            </dd>
-        </dl>
+    <div class="plan-ime">
+        <p>@Html.DisplayFor(model => model.PlanName)</p>
     </div>
-
-    <h2>Trips</h2>
-    <div>
-        <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="btn btn-primary">Add Trip</a>
+    <hr />
+    <div class="btn-AddTrip-container">
+        <p class="trips-header">Trips</p>
+        <div class="btn-AddTrip">
+            <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="btn btn-primary">Add Trip</a>
+        </div>
     </div>
     <div class="container-fluid kartice-container">
         <div class="row">
@@ -44,36 +30,40 @@
                         {
                             foreach (var dogadjaj in trip.Events)
                             {
-                                <div class="form-check">
+                                <div class="event-container form-check">
                                     <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
-                                    <label class="form-check-label" for="event_@dogadjaj.EventID">
-                                        @dogadjaj.Opis
-                                        <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">Edit</a> |
-                                        <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">Details</a> |
-                                        <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">Delete</a>
-                                    </label>
+                                    <label class="form-check-label" for="event_@dogadjaj.EventID">  @dogadjaj.Opis</label>
+                                        <div class="event-actions">
+                                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
+                                                <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
+                                            </a> |
+                                            <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">
+                                                <img class="event-icons" src="~/images/details_icon.svg" alt="Details">
+                                            </a> |
+                                            <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">
+                                                <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
+                                            </a>
+                                        </div>
                                 </div>
                             }
                         }
-                    else
-                        {
-                            <p>No events currently available.</p> // Display a message if there are no events
-                        }
+                    <a asp-controller="Event" asp-action="Create" asp-route-tripId="@trip.TripID" class="">
+                        <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
+                    </a>
                 </div>
                 <div class="card-footer">
-                    <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">Edit</a> |
-                    <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID" class="btn btn-link">Details</a> |
-                    <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">Delete</a>
+                    <a asp-controller="Trip" asp-action="Edit" asp-route-id="@trip.TripID" class="btn btn-link">
+                        <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
+                    </a> |
+                    <a asp-controller="Trip" asp-action="Details" asp-route-id="@trip.TripID" class="btn btn-link">
+                        <img class="icons" src="~/images/details_icon.svg" alt="Details">
+                    </a> |
+                    <a asp-controller="Trip" asp-action="Delete" asp-route-id="@trip.TripID" class="btn btn-link">
+                        <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
+                    </a>
                 </div>
             </div>
         }
         </div>
-        
-
-    </div>
-
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model?.PlanID" class="btn btn-secondary">Edit Plan</a> |
-        <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
     </div>
 </div>

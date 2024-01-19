@@ -38,4 +38,13 @@
 <div>
     <a href="javascript:history.back()" class="btn btn-secondary">Back</a>
 </div>
+@if (ViewBag.CreateSuccess == true)
+{
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            alert('Your changes were saved successfully!'); // Optional: Display a message
+            window.history.go(-2); // Go back to the previous page
+        });
+    </script>
+}
 

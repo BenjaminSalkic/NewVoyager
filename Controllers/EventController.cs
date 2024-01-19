@@ -61,7 +61,8 @@ namespace NewVoyager.Controllers
             {
                 _context.Add(events);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Details), "Trip", new { id = events.TripID }); // Redirect to the details view of the trip
+                ViewBag.CreateSuccess = true;
+                return View(events);
             }
             return View(events);
         }
