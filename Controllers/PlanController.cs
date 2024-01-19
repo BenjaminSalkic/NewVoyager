@@ -50,6 +50,7 @@ namespace NewVoyager.Controllers
 
             var plans = await _context.Plans
             .Include(p => p.Trips) // Include the trips in the query
+            .ThenInclude(t => t.Events)
             .FirstOrDefaultAsync(m => m.PlanID == id);
             if (plans == null)
             {
@@ -178,13 +179,12 @@ namespace NewVoyager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var plans = await _context.Plans.FindAsync(id);
-            if (plans != null)
+            var plan = await _context.Plans.FindAsync(id);
+            if (plan != null)
             {
-                _context.Plans.Remove(plans);
+                _context.Plans.Remove(plan);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

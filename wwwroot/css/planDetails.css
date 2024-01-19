@@ -1,0 +1,61 @@
+.kartice-container{
+    margin-top: 15px;
+    margin-bottom: 60px;
+}
+.plan-ime{
+    margin: auto;
+    font-size: 32px;
+    width: fit-content;
+    margin-top: 14px;
+}
+.btn-AddTrip-container{
+    display: flex;
+    margin-top: 15px;
+}
+.btn-AddTrip{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+}
+.trips-header{
+    margin: auto;
+    font-size: 26px;
+}
+.card{
+    text-align: center;
+    height: 14rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 0;
+}
+.icons{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.event-icons{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+.event-actions {
+    display: none;
+    text-align: center;
+    margin: auto;
+}
+.event-container:hover .event-actions {
+    display: block;
+}
+.card-body {
+    height: 3rem; /* Adjust the height as needed */
+    overflow-y: auto; /* Enables vertical scroll */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+}
+
+/* Hide scrollbar for all browsers */
+.card-body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+

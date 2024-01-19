@@ -1,0 +1,15 @@
+.delete-container{
+    margin: auto;
+    text-align: center;
+    margin-top: 4rem
+}
+
+.head{
+    margin: auto;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 15px;
+}
+.element{
+    font-size: 22px;
+}

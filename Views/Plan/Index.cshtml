@@ -3,33 +3,51 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" type="text/css" href="~/css/planIndex.css">
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.PlanName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PlanName)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PlanID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlanID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlanID">Delete</a>
-            </td>
-        </tr>
+<div class="btn-AddPlan-container" style="margin-top: 15px;">
+    <p class="plan-header">Your plans:</p>
+    <div class="btn-AddPlan">
+        <a asp-action="Create" class="btn btn-primary">Create new plan</a>
+    </div>
+</div>
+<hr />
+<div class="container-fluid">
+@if(Model.Any())
+{    
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-3" style="margin: auto;"> <!-- Adjust the column size as needed -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.PlanName)</h5>
+                        <div class="card-actions row">
+                            <div class="col-3 action">
+                                <a asp-action="Edit" asp-route-id="@item.PlanID" class="event-btn">
+                                    <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
+                                </a>
+                            </div>
+                            <div class="col-3 action">
+                                <a asp-action="Details" asp-route-id="@item.PlanID" class="event-btn">
+                                    <img class="event-icons" src="~/images/details_icon1.svg" alt="Details">
+                                </a>
+                            </div>
+                            <div class="col-3 action">
+                                <a asp-action="Delete" asp-route-id="@item.PlanID" class="event-btn">
+                                    <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 }
-    </tbody>
-</table>
+else{
+    <div style="text-align:center; margin-top:20px;">
+            <p style="font-size: 1.5rem;">You currently have no plans!</p>
+    </div>
+}
+</div>
