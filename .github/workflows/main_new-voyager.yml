@@ -40,13 +40,22 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+    permissions:
+      id-token: write #This is required for requesting the JWT
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: .net-app
       
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_26FAA9856C4D4A4C9C1A38DA5908B071 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_C336FD9FB61A4F71A47630907B33F14D }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D21C6820CB0B46CF8C91869EE00282C9 }}
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
@@ -54,4 +63,4 @@ jobs:
           app-name: 'new-voyager'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_4BA692A8A65E4E628723E74C68ED77F6 }}
+          
