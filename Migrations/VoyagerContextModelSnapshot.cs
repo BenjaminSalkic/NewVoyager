@@ -247,6 +247,9 @@ namespace NewVoyager.Migrations
                     b.Property<string>("Opis")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Price")
+                        .HasColumnType("int");
+
                     b.Property<int?>("TripID")
                         .HasColumnType("int");
 

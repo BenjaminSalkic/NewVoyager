@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container. 
 builder.Services.AddControllersWithViews();
 
-var connectionString = builder.Configuration.GetConnectionString("AzureContext");
+var connectionString = builder.Configuration.GetConnectionString("VoyagerContext");
 
 builder.Services.AddDbContext<VoyagerContext>(options =>
     options.UseSqlServer(connectionString));

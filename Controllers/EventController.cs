@@ -55,7 +55,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EventID,Opis,DateFrom,DateTo,TripID")] Events events)
+        public async Task<IActionResult> Create([Bind("EventID,Opis,Price,DateFrom,DateTo,TripID")] Events events)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EventID,TripID,Opis,DateFrom,DateTo")] Events events)
+        public async Task<IActionResult> Edit(int id, [Bind("EventID,TripID,Opis,Price,DateFrom,DateTo")] Events events)
         {
             if (id != events.EventID)
             {

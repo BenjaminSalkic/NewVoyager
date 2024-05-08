@@ -23,9 +23,21 @@
         {
             @foreach (var trip in Model.Trips)
             {
+                decimal totalTripPrice = 0;
+                string newName = trip.TripName; 
                 <div class="card col-3 mb-3" style="margin: auto">
                     <div class="card-header" style="background-color:#815854; color:#F9EBDE;">
-                        @Html.DisplayFor(modelItem => trip.TripName)
+                    @if (trip.Events != null && trip.Events.Any()) // Check if there are any events
+                    {
+                        foreach (var dogadjaj in trip.Events)
+                        {
+                            
+                            totalTripPrice += dogadjaj.Price ?? 0;
+                        }
+                        newName = trip.TripName + " - " + " " + totalTripPrice + "€";
+                    }        
+                        
+                        @Html.DisplayFor(modelItem => newName )  
                         <br>
                         @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
                     </div>
@@ -36,7 +48,9 @@
                                 {
                                     <div class="event-container form-check">
                                         <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
-                                        <label class="form-check-label" for="event_@dogadjaj.EventID">  @dogadjaj.Opis</label>
+                                        <label class="form-check-label" for="event_@dogadjaj.EventID"> @dogadjaj.Opis  @(dogadjaj.Price != null ? "- " + dogadjaj.Price + "€" : "") </label>
+
+
                                             <div class="event-actions">
                                                 <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
                                                     <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">

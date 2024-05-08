@@ -12,6 +12,7 @@ public class Events
     public int EventID { get; set; }
 
     public string? Opis {get; set;}
+    public int? Price { get; set; }
     public DateTime? DateFrom { get; set; }
     public DateTime? DateTo { get; set; }
     [ForeignKey("Trip")]
