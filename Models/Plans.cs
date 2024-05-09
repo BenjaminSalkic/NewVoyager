@@ -14,6 +14,8 @@ public class Plans
     [ForeignKey("ApplicationUser")]
     public string? AppUserID { get; set; }
     public ApplicationUser? AppUser { get; set; }
+    public ICollection<ApplicationUser>? Collaborators { get; set; }
+
     public ICollection<Trips>? Trips { get; set; }
 
     

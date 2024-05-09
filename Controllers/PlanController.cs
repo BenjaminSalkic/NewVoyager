@@ -34,8 +34,9 @@ namespace NewVoyager.Controllers
             }
 
             var userPlans = await _context.Plans
-                .Where(p => p.AppUserID == user.Id)
+                .Where(p => p.AppUserID == user.Id ||  p.Collaborators.Any(c => c.Id == user.Id) )
                 .ToListAsync();
+                //Dodat da trazi i planove na kojima sidodsan kao kolaborator
 
             return View(userPlans);
         }
