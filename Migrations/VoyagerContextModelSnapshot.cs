@@ -22,21 +22,6 @@ namespace NewVoyager.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ApplicationUserPlans", b =>
-                {
-                    b.Property<int>("CollaborationsPlanID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CollaboratorsId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("CollaborationsPlanID", "CollaboratorsId");
-
-                    b.HasIndex("CollaboratorsId");
-
-                    b.ToTable("ApplicationUserPlans");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -342,21 +327,6 @@ namespace NewVoyager.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Voyager", (string)null);
-                });
-
-            modelBuilder.Entity("ApplicationUserPlans", b =>
-                {
-                    b.HasOne("NewVoyager.Models.Plans", null)
-                        .WithMany()
-                        .HasForeignKey("CollaborationsPlanID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NewVoyager.Models.ApplicationUser", null)
-                        .WithMany()
-                        .HasForeignKey("CollaboratorsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

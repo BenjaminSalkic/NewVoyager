@@ -43,7 +43,7 @@ namespace NewVoyager.Data
                 .HasOne(p => p.AppUser)
                 .WithMany(v => v.Plans)
                 .HasForeignKey(p => p.AppUserID);
-
+           
         }
     }
 }
