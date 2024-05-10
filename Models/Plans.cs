@@ -17,6 +17,11 @@ public class Plans
     public ICollection<ApplicationUser>? Collaborators { get; set; }
 
     public ICollection<Trips>? Trips { get; set; }
+    public Plans()
+    {
+        // Initialize Collaborators collection in the constructor
+        Collaborators = new List<ApplicationUser>();
+    }
 
     
 }
