@@ -9,6 +9,7 @@ using NewVoyager.Data;
 using Microsoft.Data.SqlClient;
 using NewVoyager.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace NewVoyager.Controllers
 {
@@ -34,8 +35,9 @@ namespace NewVoyager.Controllers
             }
 
             var userPlans = await _context.Plans
-                .Where(p => p.AppUserID == user.Id)
+                .Where(p => p.AppUserID == user.Id ||  p.Collaborators.Any(c => c.Id == user.Id) )
                 .ToListAsync();
+                //Dodat da trazi i planove na kojima sidodsan kao kolaborator
 
             return View(userPlans);
         }
@@ -71,7 +73,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Attendees")] Plans plans)
+        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Collaborators")] Plans plans, string CollaboratorID)
         {
             if (ModelState.IsValid)
             {
@@ -79,8 +81,15 @@ namespace NewVoyager.Controllers
                 var user = await _userManager.GetUserAsync(User);
 
         // Set the Voyager field with the user id
-                Console.WriteLine("USER ID: "+user.Id);
+
                 plans.AppUserID = user.Id;
+                // Retrieve the collaborator based on the ID provided in the input field
+                ApplicationUser collaborator = await _context.Users.FindAsync(CollaboratorID);
+
+        // Add the collaborator to the Collaborators list
+                if (collaborator != null){
+                    plans.Collaborators.Add(collaborator);
+                }
                 _context.Add(plans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -126,7 +135,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PlanID,AppUserID,PlanName,Attendees")] Plans plans)
+        public async Task<IActionResult> Edit(int id, [Bind("PlanID,AppUserID,PlanName,Collaborators")] Plans plans)
         {
             if (id != plans.PlanID)
             {
