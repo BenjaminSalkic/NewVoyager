@@ -524,3 +524,17 @@ C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\refint\NewVoyager.dll
 C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\NewVoyager.pdb
 C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\NewVoyager.genruntimeconfig.cache
 C:\Users\PC\Desktop\FRI\NewVoyager\obj\Debug\net8.0\ref\NewVoyager.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\MailKit.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.Mvc.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.Razor.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.Helpers.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\System.Web.WebPages.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\MimeKit.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\OpenAI_API.dll
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\package-lock.json
+C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\package.json

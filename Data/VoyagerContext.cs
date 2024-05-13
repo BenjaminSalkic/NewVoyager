@@ -14,7 +14,7 @@ namespace NewVoyager.Data
         public DbSet<Events> Events { get; set; }
         public DbSet<Plans> Plans { get; set; }
         public DbSet<Trips> Trips { get; set; }
-
+        public DbSet<ChatMessage> ChatMessages { get; set; } // Add DbSet for ChatMessage
 
         
 
@@ -26,6 +26,7 @@ namespace NewVoyager.Data
             modelBuilder.Entity<Events>().ToTable("Event");
             modelBuilder.Entity<Plans>().ToTable("Plan");
             modelBuilder.Entity<Trips>().ToTable("Trip");
+
 
             modelBuilder.Entity<Plans>()
             .HasMany(p => p.Trips) // Define the relationship: Plans has many Trips
@@ -43,6 +44,16 @@ namespace NewVoyager.Data
                 .HasOne(p => p.AppUser)
                 .WithMany(v => v.Plans)
                 .HasForeignKey(p => p.AppUserID);
+                
+            modelBuilder.Entity<ChatMessage>()
+                .HasOne(cm => cm.Plan)
+                .WithMany(p => p.ChatMessages)
+                .HasForeignKey(cm => cm.PlanId);
+
+            modelBuilder.Entity<ChatMessage>()
+                .HasOne(cm => cm.Sender)
+                .WithMany()
+                .HasForeignKey(cm => cm.SenderId);
 
         }
     }

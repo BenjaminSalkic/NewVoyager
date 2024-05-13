@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewVoyager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e62f474fa4ec728cffd892bbaf83eba31c5fe2f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewVoyager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewVoyager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

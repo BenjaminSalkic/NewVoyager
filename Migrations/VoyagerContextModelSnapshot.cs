@@ -245,6 +245,37 @@ namespace NewVoyager.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("NewVoyager.Models.ChatMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("ChatMessages");
+                });
+
             modelBuilder.Entity("NewVoyager.Models.Events", b =>
                 {
                     b.Property<int>("EventID")
@@ -410,6 +441,25 @@ namespace NewVoyager.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("NewVoyager.Models.ChatMessage", b =>
+                {
+                    b.HasOne("NewVoyager.Models.Plans", "Plan")
+                        .WithMany("ChatMessages")
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NewVoyager.Models.ApplicationUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Plan");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("NewVoyager.Models.Events", b =>
                 {
                     b.HasOne("NewVoyager.Models.Trips", "Trip")
@@ -446,6 +496,8 @@ namespace NewVoyager.Migrations
 
             modelBuilder.Entity("NewVoyager.Models.Plans", b =>
                 {
+                    b.Navigation("ChatMessages");
+
                     b.Navigation("Trips");
                 });
 

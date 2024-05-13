@@ -1,15 +1,18 @@
 @using Microsoft.AspNetCore.Identity
-
 @model IEnumerable<NewVoyager.Models.Plans>
 @inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
 }
-<link rel="stylesheet" type="text/css" href="~/css/planIndex.css">
 
+<link rel="stylesheet" type="text/css" href="~/css/planIndex.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <div class="btn-AddPlan-container" style="margin-top: 15px;">
-    <p class="user-Id" style="position:absolute; right:36rem;">Your ID : <br />  @UserManager.GetUserId(User)</p>
+    <!-- Display the username instead of the user ID -->
+    <p class="user-Id" style="position:absolute; right:36rem; cursor: pointer;">Your ID</p>
     <p class="plan-header">Your plans:</p>
     <div class="btn-AddPlan">
         <a asp-action="Create" class="btn ">Create new plan</a>
@@ -51,7 +54,31 @@
 }
 else{
     <div style="text-align:center; margin-top:20px;">
-            <p style="font-size: 1.5rem;">You currently have no plans!</p>
+        <p style="font-size: 1.5rem;">You currently have no plans!</p>
     </div>
 }
 </div>
+
+
+<!-- JavaScript to copy user ID to clipboard -->
+<script>
+    // Function to copy user ID to clipboard
+    function copyUserId() {
+        // Get the user ID from the server-side Razor code
+        var userId = '@UserManager.GetUserId(User)';
+        
+        // Create a temporary input element to copy the user ID to the clipboard
+        var tempInput = document.createElement("input");
+        tempInput.value = userId;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+
+        // Display a message or perform any other actions after copying the user ID
+        toastr.success('User ID copied to clipboard');
+    }
+
+    // Add click event listener to the user ID element
+    document.querySelector('.user-Id').addEventListener('click', copyUserId);
+</script>
