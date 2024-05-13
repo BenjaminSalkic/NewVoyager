@@ -10,6 +10,8 @@ using Microsoft.Data.SqlClient;
 using NewVoyager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Claims;
+
 
 namespace NewVoyager.Controllers
 {
@@ -51,9 +53,11 @@ namespace NewVoyager.Controllers
             }
 
             var plans = await _context.Plans
-            .Include(p => p.Trips) // Include the trips in the query
-            .ThenInclude(t => t.Events)
-            .FirstOrDefaultAsync(m => m.PlanID == id);
+                .Include(p => p.Trips) // Include the trips in the query
+                .ThenInclude(t => t.Events) // Include events related to each trip
+                .Include(p => p.ChatMessages) // Include chat messages related to the plan
+                .FirstOrDefaultAsync(m => m.PlanID == id);
+
             if (plans == null)
             {
                 return NotFound();
@@ -129,7 +133,42 @@ namespace NewVoyager.Controllers
             }
             return View(plans);
         }
+                
+                // POST: Plan/SendMessage
+                // POST: Plan/SendMessage
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SendMessage(int planId, string messageContent)
+        {
+            var plan = await _context.Plans
+                .Include(p => p.ChatMessages)
+                .FirstOrDefaultAsync(p => p.PlanID == planId);
 
+            var loggedUser = await _userManager.GetUserAsync(User);
+
+            if (plan == null)
+            {
+                return NotFound();
+            }
+
+            var message = new ChatMessage
+            {   
+                Content = messageContent,
+                Timestamp = DateTime.Now,
+                PlanId = planId,
+                SenderId = loggedUser.FirstName,
+                Sender = loggedUser
+            };
+            Console.WriteLine("*****************************************************************\n\n\n\n\n***********************************************************************************************************");
+            Console.WriteLine(message.Sender.UserName);
+            Console.WriteLine(message.SenderId);
+            Console.WriteLine("*****************************************************************\n\n\n\n\n***********************************************************************************************************");
+            plan.ChatMessages.Add(message);
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details), new { id = planId });
+        }
         // POST: Plan/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
