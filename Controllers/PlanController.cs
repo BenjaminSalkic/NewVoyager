@@ -10,11 +10,17 @@ using Microsoft.Data.SqlClient;
 using NewVoyager.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.IdentityModel.Tokens;
+
+
+
+
 
 namespace NewVoyager.Controllers
 {
     public class PlanController : Controller
     {
+        
         private readonly VoyagerContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -73,7 +79,7 @@ namespace NewVoyager.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Collaborators")] Plans plans, string CollaboratorID)
+        public async Task<IActionResult> Create([Bind("PlanID,PlanName,Collaborators")] Plans plans, string CollaboratorID="")
         {
             if (ModelState.IsValid)
             {
@@ -81,15 +87,27 @@ namespace NewVoyager.Controllers
                 var user = await _userManager.GetUserAsync(User);
 
         // Set the Voyager field with the user id
+            
 
                 plans.AppUserID = user.Id;
-                // Retrieve the collaborator based on the ID provided in the input field
-                ApplicationUser collaborator = await _context.Users.FindAsync(CollaboratorID);
+                
+                if(CollaboratorID != ""){
 
-        // Add the collaborator to the Collaborators list
-                if (collaborator != null){
-                    plans.Collaborators.Add(collaborator);
-                }
+                    ApplicationUser collaborator = await _context.Users.FindAsync(CollaboratorID);
+
+                    if(collaborator == null){
+                        ModelState.AddModelError("Collaborators", "Collaborator does not exist.");
+                        ViewBag.CollaboratorID = "";
+                        return View(plans);
+                    }else{
+                        plans.Collaborators.Add(collaborator);
+                    }
+                    
+                }else{
+
+                    plans.Collaborators.Add(user);
+                }   
+                
                 _context.Add(plans);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +115,35 @@ namespace NewVoyager.Controllers
             return View(plans);
         }
 
+  // POST: api/Plan/AddCollaborator
+        [HttpPost]
+        public async Task<IActionResult> AddCollaborator(int planId, string collaboratorId)
+        {
+            // Get the plan
+            Console.WriteLine("******************************************");
+            Console.WriteLine(planId);
+            var plan = await _context.Plans.FindAsync(planId);
+            if (plan == null)
+            {
+                return NotFound();
+            }
+
+            // Get the collaborator
+            var collaborator = await _userManager.FindByIdAsync(collaboratorId);
+            if (collaborator == null)
+            {
+                return NotFound();
+            }
+
+            // Add the collaborator to the plan
+            plan.Collaborators.Add(collaborator);
+
+            // Save changes
+            await _context.SaveChangesAsync();
+
+            // Redirect to the Details action
+            return RedirectToAction("Details", new { id = planId });
+        }
         // GET: api/Plan/UserPlans
         [HttpGet]
         [Route("api/Plan/UserPlans")]

@@ -13,6 +13,12 @@
 .btn-AddPlan-container{
     display: flex;
 }
+.user-Id{
+    position: absolute;
+    right: 10px;
+    margin: 0;
+    padding: 0;
+}
 .btn-AddPlan{
     position: absolute;
     left: 10px;

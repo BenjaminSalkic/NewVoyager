@@ -1,4 +1,7 @@
+@using Microsoft.AspNetCore.Identity
+
 @model IEnumerable<NewVoyager.Models.Plans>
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -6,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="~/css/planIndex.css">
 
 <div class="btn-AddPlan-container" style="margin-top: 15px;">
+    <p class="user-Id" style="position:absolute; right:36rem;">Your ID : <br />  @UserManager.GetUserId(User)</p>
     <p class="plan-header">Your plans:</p>
     <div class="btn-AddPlan">
         <a asp-action="Create" class="btn ">Create new plan</a>

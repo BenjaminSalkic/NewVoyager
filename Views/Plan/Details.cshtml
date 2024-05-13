@@ -8,6 +8,19 @@
     <div class="plan-ime">
         <p>@Html.DisplayFor(model => model.PlanName)</p>
     </div>
+    <div>
+        <form asp-action="AddCollaborator">
+            <input type="hidden" name="planId" value="@Model.PlanID" />
+            <div class="form-group">
+                <label asp-for="Collaborators" class="control-label">Add a Collaborator</label>
+                <input asp-for="Collaborators" name="CollaboratorID" class="form-control" value="@ViewBag.CollaboratorID"/>
+                <span asp-validation-for="Collaborators" class="text-danger" ></span>
+            </div>
+            <div class="form-group dugme col-6" style="text-align: right;">
+                    <input type="submit" value="Add Collaborator" class="btn" />
+                </div>
+        </form>
+    </div>
     <hr />
     <div class="btn-AddTrip-container">
         <p class="trips-header">Trips</p>
