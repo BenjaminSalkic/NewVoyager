@@ -13,9 +13,11 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Opis)
+                @Html.DisplayNameFor(model => model.Opis) 
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.Price) 
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.DateFrom)
             </th>
@@ -30,6 +32,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Opis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
             </td>
             
             <td>

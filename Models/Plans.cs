@@ -14,7 +14,17 @@ public class Plans
     [ForeignKey("ApplicationUser")]
     public string? AppUserID { get; set; }
     public ApplicationUser? AppUser { get; set; }
+    public ICollection<ApplicationUser>? Collaborators { get; set; }
+
     public ICollection<Trips>? Trips { get; set; }
+    public ICollection<ChatMessage>? ChatMessages { get; set; } // Navigation property for chat messages
+
+    public Plans()
+    {
+        // Initialize Collaborators collection in the constructor
+        Collaborators = new List<ApplicationUser>();
+        ChatMessages = new List<ChatMessage>();
+    }
 
     
 }
