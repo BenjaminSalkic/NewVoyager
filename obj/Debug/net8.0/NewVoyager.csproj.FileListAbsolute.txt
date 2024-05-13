@@ -538,3 +538,5 @@ C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\MimeKit.dll
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\OpenAI_API.dll
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\package-lock.json
 C:\Users\stefa\OneDrive\Desktop\NewVoyager\bin\Debug\net8.0\package.json
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\package-lock.json
+C:\Users\PC\Desktop\FRI\NewVoyager\bin\Debug\net8.0\package.json

@@ -132,18 +132,32 @@ namespace NewVoyager.Controllers
 
             // Get the collaborator
             var collaborator = await _userManager.FindByIdAsync(collaboratorId);
-            if (collaborator == null)
-            {
-                return NotFound();
-            }
-
+          
             // Add the collaborator to the plan
-            plan.Collaborators.Add(collaborator);
+            try
+            {
+                plan.Collaborators.Add(collaborator);
+                await _context.SaveChangesAsync();
+                TempData["Success"] = true;
+                TempData["Message"] = "Collaborator added successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["Success"] = false;
+                TempData["Message"] = "Failed to add collaborator: " + ex.Message;
+            }
+            if (collaborator == null)
+            {   
+                TempData["Message"] = "Failed to add collaborator: Collaborator does not exist!";
+                ViewBag.CollaboratorID = "";
+            }else if(plan.Collaborators.Contains(collaborator)){
 
-            // Save changes
-            await _context.SaveChangesAsync();
+                TempData["Message"] = "Failed to add collaborator: Collaborator already added!";
+                ViewBag.CollaboratorID = "";
+            }
+            
+            //Provjera da li je collaborator vec u listi!!!
 
-            // Redirect to the Details action
             return RedirectToAction("Details", new { id = planId });
         }
         // GET: api/Plan/UserPlans

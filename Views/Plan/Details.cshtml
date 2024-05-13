@@ -10,6 +10,10 @@
 }
 
 <link rel="stylesheet" type="text/css" href="~/css/planDetails.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 <div class="planovi">
     <div class="plan-ime">
         <p>@Html.DisplayFor(model => model.PlanName)</p>
@@ -128,3 +132,14 @@
         <button type="submit">Send</button>
     </form>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var success = '@TempData["Success"]';
+        var message = '@TempData["Message"]';
+        if (success === 'True') {
+            toastr.success(message);
+        } else if (success === 'False') {
+            toastr.error(message);
+        }
+    });
+</script>
