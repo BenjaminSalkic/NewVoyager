@@ -59,9 +59,16 @@ namespace NewVoyager.Controllers
         {
             if (ModelState.IsValid)
             {
+                try {
+                    
                 _context.Add(events);
                 await _context.SaveChangesAsync();
                 ViewBag.CreateSuccess = true;
+                }
+                catch (Exception ex)
+                {
+                    TempData["EventCreateError"] = "Error creating event: " + ex.Message;
+                }
                 return View(events);
             }
             return View(events);
@@ -101,10 +108,11 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(events);
                     await _context.SaveChangesAsync();
+                    TempData["EventEditSuccess"] = "Event edited successfully!";
                     ViewBag.EditSuccess = true;
                     return View(events);
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!EventsExists(events.EventID))
                     {
@@ -112,7 +120,8 @@ namespace NewVoyager.Controllers
                     }
                     else
                     {
-                        throw;
+                        TempData["EventEditError"] = "Error editing event: " + ex.Message;
+
                     }
                 }
             }
@@ -143,10 +152,16 @@ namespace NewVoyager.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var events = await _context.Events.FindAsync(id);
-            if (events != null)
+            try
             {
                 _context.Events.Remove(events);
                 await _context.SaveChangesAsync();
+
+                TempData["EventDeletionSuccess"] = "Event deleted successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["EventDeletionError"] = "Error deleting event: " + ex.Message;
             }
 
             // Pass a flag to the view indicating success

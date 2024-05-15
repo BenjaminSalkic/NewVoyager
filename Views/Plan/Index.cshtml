@@ -59,8 +59,8 @@ else{
 }
 </div>
 
-
-<!-- JavaScript to copy user ID to clipboard -->
+@section Scripts {
+    
 <script>
     // Function to copy user ID to clipboard
     function copyUserId() {
@@ -81,4 +81,37 @@ else{
 
     // Add click event listener to the user ID element
     document.querySelector('.user-Id').addEventListener('click', copyUserId);
-</script>
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+         $(document).ready(function() {
+            var creationSuccessMessage = '@TempData["PlanCreationSuccess"]';
+            var creationErrorMessage = '@TempData["PlanCreationError"]';
+            var deletionSuccessMessage = '@TempData["PlanDeletionSuccess"]';
+            var deletionErrorMessage = '@TempData["PlanDeletionError"]';
+            var editSuccessMessage = '@TempData["PlanEditSuccess"]';
+            var editErrorMessage = '@TempData["PlanEditError"]';
+            if (creationSuccessMessage) {
+                toastr.success(creationSuccessMessage);
+            }
+            if (creationErrorMessage) {
+                toastr.error(creationErrorMessage);
+            }
+            if (deletionSuccessMessage) {
+                toastr.success(deletionSuccessMessage);
+            }
+            if (deletionErrorMessage) {
+                toastr.error(deletionErrorMessage);
+            }
+            if (editSuccessMessage) {
+                toastr.success(editSuccessMessage);
+            }
+            if (editErrorMessage) {
+                toastr.error(editErrorMessage);
+            }
+        });
+    </script>
+}

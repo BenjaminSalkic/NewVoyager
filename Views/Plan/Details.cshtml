@@ -11,8 +11,6 @@
 
 <link rel="stylesheet" type="text/css" href="~/css/planDetails.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <div class="planovi">
     <div class="plan-ime">
@@ -132,14 +130,61 @@
         <button type="submit">Send</button>
     </form>
 </div>
-<script type="text/javascript">
-    $(document).ready(function() {
-        var success = '@TempData["Success"]';
-        var message = '@TempData["Message"]';
-        if (success === 'True') {
-            toastr.success(message);
-        } else if (success === 'False') {
-            toastr.error(message);
-        }
-    });
-</script>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var tripCreationSuccessMessage = '@TempData["TripCreationSuccess"]';
+            var tripCreationErrorMessage = '@TempData["TripCreationError"]';
+            var tripEditSuccessMessage = '@TempData["TripEditSuccess"]';
+            var tripEditErrorMessage = '@TempData["TripEditError"]';
+            var tripDeletionSuccessMessage = '@TempData["TripDeletionSuccess"]';
+            var tripDeletionErrorMessage = '@TempData["TripDeletionError"]';
+
+            var eventCreationSuccessMessage = '@TempData["EventCreationSuccess"]';
+            var eventCreationErrorMessage = '@TempData["EventCreationError"]';
+            var eventEditSuccessMessage = '@TempData["EventEditSuccess"]';
+            var eventEditErrorMessage = '@TempData["EventEditError"]';
+            var eventDeletionSuccessMessage = '@TempData["EventDeletionSuccess"]';
+            var eventDeletionErrorMessage = '@TempData["EventDeletionError"]';
+            
+            if (tripCreationSuccessMessage) {
+                toastr.success(tripCreationSuccessMessage);
+            }
+            if (tripCreationErrorMessage) {
+                toastr.error(tripCreationErrorMessage);
+            }
+            if (tripEditSuccessMessage) {
+                toastr.success(tripEditSuccessMessage);
+            }
+            if (tripEditErrorMessage) {
+                toastr.error(tripEditErrorMessage);
+            }
+            if (tripDeletionSuccessMessage) {
+                toastr.success(tripDeletionSuccessMessage);
+            }
+            if (tripDeletionErrorMessage) {
+                toastr.error(tripDeletionErrorMessage);
+            }
+            if (eventCreationSuccessMessage) {
+                toastr.success(eventCreationSuccessMessage);
+            }
+            if (eventCreationErrorMessage) {
+                toastr.error(eventCreationErrorMessage);
+            }
+             if (eventEditSuccessMessage) {
+                toastr.success(eventEditSuccessMessage);
+            }
+            if (eventEditErrorMessage) {
+                toastr.error(eventEditErrorMessage);
+            }
+            if (eventDeletionSuccessMessage) {
+                toastr.success(eventDeletionSuccessMessage);
+            }
+            if (eventDeletionErrorMessage) {
+                toastr.error(eventDeletionErrorMessage);
+            }
+        });
+    </script>
+}

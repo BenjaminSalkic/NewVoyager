@@ -60,8 +60,18 @@ namespace NewVoyager.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(trips);
-                await _context.SaveChangesAsync();
+                try
+                {
+                    _context.Add(trips);
+                    await _context.SaveChangesAsync();
+
+                    TempData["TripCreationSuccess"] = "Trip created successfully!";
+                }
+                catch (Exception ex)
+                {
+                    TempData["TripCreationError"] = "Error creating trip: " + ex.Message;
+                }
+
                 return RedirectToAction(nameof(Details), "Plan", new { id = trips.PlanID }); // Redirect to the details view of the plan
             }
             return View(trips);
@@ -101,10 +111,10 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(trips);
                     await _context.SaveChangesAsync();
-                    ViewBag.EditSuccess = true;
-                    return View(trips);
-                }
-                catch (DbUpdateConcurrencyException)
+
+                    TempData["TripEditSuccess"] = "Trip edited successfully!";
+                }       
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!TripsExists(trips.TripID))
                     {
@@ -112,11 +122,13 @@ namespace NewVoyager.Controllers
                     }
                     else
                     {
-                        throw;
+                        TempData["TripEditError"] = "Error editing trip: " + ex.Message;
+
                     }
+                    
                 }
             }
-            return View(trips);
+            return RedirectToAction("Details", "Plan", new { id = trips.PlanID });
         }
 
         // GET: Trip/Delete/5
@@ -142,16 +154,22 @@ namespace NewVoyager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var trips = await _context.Trips.FindAsync(id);
-            if (trips != null)
+            var trip = await _context.Trips.FindAsync(id);
+            var planId = trip.PlanID;
+
+            try
             {
-                _context.Trips.Remove(trips);
+                _context.Trips.Remove(trip);
                 await _context.SaveChangesAsync();
+
+                TempData["TripDeletionSuccess"] = "Trip deleted successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["TripDeletionError"] = "Error deleting trip: " + ex.Message;
             }
 
-           
-            ViewBag.DeleteSuccess = true;
-            return View(trips);
+            return RedirectToAction("Details", "Plan", new { id = planId });
         }
 
         private bool TripsExists(int id)

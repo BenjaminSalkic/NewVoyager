@@ -85,10 +85,13 @@ namespace NewVoyager.Controllers
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    
                 // Get the currently logged-in user
                 var user = await _userManager.GetUserAsync(User);
 
-        // Set the Voyager field with the user id
+                // Set the Voyager field with the user id
             
 
                 plans.AppUserID = user.Id;
@@ -110,9 +113,15 @@ namespace NewVoyager.Controllers
                     plans.Collaborators.Add(user);
                 }   
                 
-                _context.Add(plans);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                    _context.Add(plans);
+                    await _context.SaveChangesAsync();
+                    TempData["PlanCreationSuccess"] = "Plan created successfully!";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (Exception ex)
+                {
+                    TempData["PlanCreationError"] = "Error creating plan: " + ex.Message;
+                }
             }
             return View(plans);
         }
@@ -148,10 +157,11 @@ namespace NewVoyager.Controllers
             }
             if (collaborator == null)
             {   
+                TempData["Success"] = false;
                 TempData["Message"] = "Failed to add collaborator: Collaborator does not exist!";
                 ViewBag.CollaboratorID = "";
             }else if(plan.Collaborators.Contains(collaborator)){
-
+                TempData["Success"] = false;
                 TempData["Message"] = "Failed to add collaborator: Collaborator already added!";
                 ViewBag.CollaboratorID = "";
             }
@@ -246,8 +256,11 @@ namespace NewVoyager.Controllers
                 {
                     _context.Update(plans);
                     await _context.SaveChangesAsync();
+                    TempData["PlanEditSuccess"] = "Plan edited successfully!";
+
+                    
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (DbUpdateConcurrencyException ex)
                 {
                     if (!PlansExists(plans.PlanID))
                     {
@@ -255,7 +268,8 @@ namespace NewVoyager.Controllers
                     }
                     else
                     {
-                        throw;
+                        TempData["PlanEditError"] = "Error editing plan: " + ex.Message;
+
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -286,13 +300,21 @@ namespace NewVoyager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var plan = await _context.Plans.FindAsync(id);
-            if (plan != null)
-            {
-                _context.Plans.Remove(plan);
-                await _context.SaveChangesAsync();
-            }
-            return RedirectToAction(nameof(Index));
+            
+                try
+                {
+                    var plan = await _context.Plans.FindAsync(id);
+                    _context.Plans.Remove(plan);
+                    await _context.SaveChangesAsync();
+
+                    TempData["PlanDeletionSuccess"] = "Plan deleted successfully!";
+                }
+                catch (Exception ex)
+                {
+                    TempData["PlanDeletionError"] = "Error deleting plan: " + ex.Message;
+                }
+
+                return RedirectToAction(nameof(Index));
         }
 
         private bool PlansExists(int id)
