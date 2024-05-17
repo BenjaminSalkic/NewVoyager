@@ -9,15 +9,13 @@
     ViewData["Title"] = "Details";
 }
 
-<link rel="stylesheet" type="text/css" href="~/css/planDetails.css">
+<link rel="stylesheet" type="text/css" href="~/css/site.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 
 <div class="planovi">
-    <div class="plan-ime">
+    <div class="planName">
         <p>@Html.DisplayFor(model => model.PlanName)</p>
-    </div>
-    <div>
-        <form asp-action="AddCollaborator">
+                <form asp-action="AddCollaborator">
             <input type="hidden" name="planId" value="@Model.PlanID" />
             <div class="form-group">
                 <label asp-for="Collaborators" class="control-label">Add a Collaborator</label>
@@ -32,104 +30,110 @@
     <hr />
     <div class="btn-AddTrip-container">
         <p class="trips-header">Trips</p>
-        <div class="btn-AddTrip">
-            <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID" class="">
-                <img style="width: 1.9rem; height: 1.9rem;" src="~/images/plus_icon.svg" alt="Add Trip">
-            </a>
+       <div  style="position: absolute; left: 1rem; ">
+            <a asp-controller="Trip" asp-action="Create" asp-route-planId="@Model.PlanID"  class="btn">Add Trip</a>
         </div>
     </div>
-    <div class="container-fluid kartice-container">
-        <div class="row">
-            @if (Model.Trips != null && Model.Trips.Any())
-            {
-                @foreach (var trip in Model.Trips)
-                {
-                    decimal totalTripPrice = 0;
-                    string newName = trip.TripName;
-                    <div class="card col-3 mb-3" style="margin: auto">
-                        <div class="card-header" style="background-color:#815854; color:#F9EBDE;">
-                            @if (trip.Events != null && trip.Events.Any())
-                            {
-                                foreach (var dogadjaj in trip.Events)
-                                {
-                                    totalTripPrice += dogadjaj.Price ?? 0;
-                                }
-                                newName = trip.TripName + " - " + " " + totalTripPrice + "€";
-                            }
-                            @Html.DisplayFor(modelItem => newName)
-                            <br />
-                            @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
+    <div class="devider">
+        <div class="chatbox-left">
+            <div class="chatbox-container">
+                <h2 style="margin: bottom 0.5rem;">Chatbox</h2>
+                <div id="chatbox">
+                    @if (Model.ChatMessages == null || !Model.ChatMessages.Any())
+                    {
+                        <p>No messages yet.</p>
+                    }
+                    else
+                    {
+                        @foreach (var message in Model.ChatMessages)
+                        {
+                            <div>
+                                <span>@(await UserManager.FindByIdAsync(message.SenderId)): </span><br>
+                                <span>@message.Content</span>
+                            </div>
+                        }
+                    }
+                </div>
+                <form id="chatForm" asp-controller="Plan" asp-action="SendMessage" method="post">
+                    <input type="hidden" name="planId" value="@Model.PlanID" />
+                    <input type="text" id="messageInput" name="messageContent" placeholder="Type your message here..." />
+                    <button type="submit" class="btn">Send</button>
+                </form>
+            </div>
+        </div>
+        <div class="trips-right">
+            <div class="container-fluid kartice-container">
+                <div class="row">
+                    @if (Model.Trips != null && Model.Trips.Any())
+                    {
+                        @foreach (var trip in Model.Trips)
+                        {
+                            decimal totalTripPrice = 0;
+                            string newName = trip.TripName;
+                            <div class="card col-3 mb-3" style="margin: auto">
+                                <div class="card-header" style="background-color:#34495e; color:white">
+                                    @if (trip.Events != null && trip.Events.Any())
+                                    {
+                                        foreach (var dogadjaj in trip.Events)
+                                        {
+                                            totalTripPrice += dogadjaj.Price ?? 0;
+                                        }
+                                        newName = trip.TripName + " - " + " " + totalTripPrice + "€";
+                                    }
+                                    @Html.DisplayFor(modelItem => newName)
+                                    <br />
+                                    @trip.DateFrom?.ToString("d") - @trip.DateTo?.ToString("d")
+                                </div>
+                                <div class="card-body">
+                                    @if (trip.Events != null && trip.Events.Any())
+                                    {
+                                        foreach (var dogadjaj in trip.Events)
+                                        {
+                                            <div class="event-container form-check">
+                                                <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
+                                                <label class="form-check-label" style="color: black;" for="event_@dogadjaj.EventID"> @dogadjaj.Opis @(dogadjaj.Price != null ? "- " + dogadjaj.Price + "€" : "") </label>
+                                                <div class="event-actions">
+                                                    <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
+                                                        <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
+                                                    </a> |
+                                                    <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">
+                                                        <img class="event-icons" src="~/images/details_icon1.svg" alt="Details">
+                                                    </a> |
+                                                    <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">
+                                                        <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                    <a asp-controller="Event" asp-action="Create" asp-route-tripId="@trip.TripID" class="">
+                                        <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
+                                    </a>
+                                </div>
+                                <div class="card-footer" style="background-color:#34495e; color:#F9EBDE;">
+                                    <a asp-controller="Trip" style="background-color:#F9EBDE; color:#34495e" asp-action="Edit" asp-route-id="@trip.TripID" class="btn ">
+                                        <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
+                                    </a> |
+                                    <a asp-controller="Trip" style="background-color:#F9EBDE; color:#34495e;" asp-action="Delete" asp-route-id="@trip.TripID" class="btn ">
+                                        <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div style="text-align: center;">
+                            <p style="font-size: 1.5rem;">There are no trips for this plan yet!</p>
                         </div>
-                        <div class="card-body">
-                            @if (trip.Events != null && trip.Events.Any())
-                            {
-                                foreach (var dogadjaj in trip.Events)
-                                {
-                                    <div class="event-container form-check">
-                                        <input class="form-check-input" type="checkbox" value="@dogadjaj.EventID" id="event_@dogadjaj.EventID">
-                                        <label class="form-check-label" for="event_@dogadjaj.EventID"> @dogadjaj.Opis @(dogadjaj.Price != null ? "- " + dogadjaj.Price + "€" : "") </label>
-                                        <div class="event-actions">
-                                            <a asp-controller="Event" asp-action="Edit" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">
-                                            </a> |
-                                            <a asp-controller="Event" asp-action="Details" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/details_icon1.svg" alt="Details">
-                                            </a> |
-                                            <a asp-controller="Event" asp-action="Delete" asp-route-id="@dogadjaj.EventID">
-                                                <img class="event-icons" src="~/images/delete_icon.svg" alt="Delete">
-                                            </a>
-                                        </div>
-                                    </div>
-                                }
-                            }
-                            <a asp-controller="Event" asp-action="Create" asp-route-tripId="@trip.TripID" class="">
-                                <img class="icons" src="~/images/plus_icon.svg" alt="Add Event">
-                            </a>
-                        </div>
-                        <div class="card-footer" style="background-color:#815854; color:#F9EBDE;">
-                            <a asp-controller="Trip" style="background-color:#F9EBDE; color:#815854;" asp-action="Edit" asp-route-id="@trip.TripID" class="btn ">
-                                <img class="icons" src="~/images/edit_icon.svg" alt="Edit">
-                            </a> |
-                            <a asp-controller="Trip" style="background-color:#F9EBDE; color:#815854;" asp-action="Delete" asp-route-id="@trip.TripID" class="btn ">
-                                <img class="icons" src="~/images/delete_icon.svg" alt="Delete">
-                            </a>
-                        </div>
+                    }
                     </div>
-                }
-            }
-            else
-            {
-                <div style="text-align: center;">
-                    <p style="font-size: 1.5rem;">There are no trips for this plan yet!</p>
                 </div>
-            }
+            </div>
         </div>
     </div>
-</div>
-<div class="chatbox-container">
-    <h2>Chatbox</h2>
-    <div id="chatbox">
-        @if (Model.ChatMessages == null || !Model.ChatMessages.Any())
-        {
-            <p>No messages yet.</p>
-        }
-        else
-        {
-            @foreach (var message in Model.ChatMessages)
-            {
-                <div>
-                    <span>@(await UserManager.FindByIdAsync(message.SenderId)): </span><br>
-                    <span>@message.Content</span>
-                </div>
-            }
-        }
-    </div>
-    <form id="chatForm" asp-controller="Plan" asp-action="SendMessage" method="post">
-        <input type="hidden" name="planId" value="@Model.PlanID" />
-        <input type="text" id="messageInput" name="messageContent" placeholder="Type your message here..." />
-        <button type="submit">Send</button>
-    </form>
-</div>
+ </div>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

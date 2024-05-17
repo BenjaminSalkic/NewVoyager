@@ -6,16 +6,18 @@
     ViewData["Title"] = "Index";
 }
 
-<link rel="stylesheet" type="text/css" href="~/css/planIndex.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+</head>
 <div class="btn-AddPlan-container" style="margin-top: 15px;">
     <!-- Display the username instead of the user ID -->
-    <p class="user-Id" style="position:absolute; right:36rem; cursor: pointer;">Your ID</p>
+    <p class="IdBtn" onclick="copyUserId()" >Your ID</p>
     <p class="plan-header">Your plans:</p>
     <div class="btn-AddPlan">
-        <a asp-action="Create" class="btn ">Create new plan</a>
+        <a asp-action="Create" class="btn">Create new plan</a>
     </div>
 </div>
 <hr />
@@ -27,9 +29,9 @@
         {
             <div class="col-3" style="margin: auto;"> <!-- Adjust the column size as needed -->
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div class="card-body" style="padding: 0px; margin-top:0px;">
                         <h5 class="card-title">@Html.DisplayFor(modelItem => item.PlanName)</h5>
-                        <div class="card-actions row">
+                        <div class="card-actions row" style="padding: 10px;">
                             <div class="col-3 action">
                                 <a asp-action="Edit" asp-route-id="@item.PlanID" class="event-btn">
                                     <img class="event-icons" src="~/images/edit_icon.svg" alt="Edit">

@@ -31,7 +31,7 @@
 </header>
 
     <div class="containerB">
-        <main role="main" class="pb-3">
+        <main role="main" >
              @if (User.Identity.IsAuthenticated)
             {
                 <div class="left">
@@ -45,7 +45,7 @@
                     </div>
                     <div class="inpt">
                             <input type="text" id="inputText" placeholder="Send a message ...">
-                            <button id="submitButton" >Submit</button>
+                            <button id="submitButton" style="margin-left: 2rem;" >Submit</button>
                     </div>
                 </div>
             }else{

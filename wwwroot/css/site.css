@@ -5,9 +5,14 @@ html {
 body{
   margin: 0;
   padding: 0;
+  background-image: url('BGpic.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.75;
   /* overflow-y: scroll;
   overflow-x: hidden; */
 }
+
 .screen{
   margin: 0;
   padding: 0;
@@ -15,16 +20,18 @@ body{
   overflow-x: hidden; */
 }
 .left{
+  opacity: 1;
   float: left;
+  color: rgb(255, 255, 255);
   width: 70%;
-  height: 100vh; /* 100% of the viewport height */
-  background-color: #F9EBDE; /* Left div background color */
+  height: 90vh; 
 }
 .right{
+  padding: 3rem;
   float: right;
   width: 30%;
-  height: 100vh; /* 100% of the viewport height */
-  background-color: #F9EBDE; /* Right div background color */
+  height: 90vh; 
+  background-color: #ecf0f1; 
 }
 
 @media (min-width: 768px) {
@@ -34,7 +41,7 @@ body{
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #815854;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #34495e;
 }
 
 html {
@@ -46,16 +53,18 @@ body {
   margin-bottom: 60px;
 }
 /* Reset some default styles */
-body, h1, h2, h3, p, ul, li {
+body, h1, h2, h3,h5 , p, ul, li {
+  color: #ffffff;
   margin: 0;
   padding: 0;
 }
 
 body {
+
   font-family: 'Arial', sans-serif;
   line-height: 1.6;
-  background-color: #F9EBDE;
-  color: #815854;
+  background-color: #ecf0f1;
+  color: #34495e;
 }
 
 .container {
@@ -64,8 +73,8 @@ body {
 }
 
 .header {
-  background-color:#815854 ;
-  color: #F9EBDE;
+  background-color:#34495e ;
+  color: #ecf0f1;
   padding: 20px 0;
 }
 
@@ -74,13 +83,13 @@ body {
 }
 
 .navbar {
-  background-color: #815854;
-  color: #F9EBDE;
+  background-color: #3498db;
+  color: #ecf0f1;
   padding: 10px 0;
 }
 
 .navbar a {
-  color: #F9EBDE;
+  color: #ecf0f1;
   text-decoration: none;
   padding: 10px;
   margin: 0 10px;
@@ -95,23 +104,72 @@ body {
   font-size: 16px;
   text-align: center;
   text-decoration: none;
-  background-color: #815854;
-  color: #F9EBDE;
+  background-color: #34495e;
+  color: #ecf0f1;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
-.btn{  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  text-align: center;
-  text-decoration: none;
-  background-color: #815854;
-  color: #F9EBDE;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;}
+.btn{   
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #3498db;
+  border: 1px solid #2980b9;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  position: relative;
+  overflow: hidden;
+  font-size: 19px;
+  cursor: pointer;
+  color: #ffffff;
+  z-index: 1;
 
-.button:hover {
-  background-color: #815854;
+}
+ 
+.btn:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: #2980b9;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #2980b9 ;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.btn:hover {
+  color: #ffffff;
+  border: 1px solid #2980b9 ;
+}
+
+.btn:hover:before {
+  top: -35%;
+  background-color: #2980b9 ;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn:hover:after {
+  top: -45%;
+  background-color: #2980b9 ;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
 }
 
 /* Forms */
@@ -129,14 +187,14 @@ body {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
-  border: 1px solid #815854;
+  border: 1px solid #34495e;
   border-radius: 5px;
 }
 
 .card {
   width: 15rem;
-  background-color: #F9EBDE;
-  border: 1px solid #815854;
+  background-color: #ecf0f1;
+  border: 1px solid #34495e;
   border-radius: 5px;
   margin: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -144,9 +202,9 @@ body {
 
 .card-title {
   display: flex;
-  color: #F9EBDE;
+  color: #ecf0f1;
   border-radius: 5px 5px 0px 0px;
-  background-color: #815854;
+  background-color: #34495e;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -171,4 +229,229 @@ body {
     width: 90%;
   }
 }
+.event-icons{
+  width: 2rem;
+  height: 2rem;    
+}
+.action{
+  margin: auto;
+  border: 2px solid white;
+}
+.action:hover{
+  border: 2px solid black;
+  border-radius: 4px;
+}
+.btn-AddPlan-container{
+  display: flex;
+  height: 4rem;
+}
 
+.IdBtn {
+  padding: 12px 24px;
+  border: 1px solid #2980b9;
+  background-color: #3498db;
+  border-radius: 4px;
+  transition: all 0.2s ease-in;
+  position: absolute;
+  right: 37rem;
+  overflow: hidden;
+  font-size: 19px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  z-index: 1;
+}
+
+.IdBtn:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.25);
+  top: 100%;
+  width: 140%;
+  height: 180%;
+  background-color: #2980b9;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.IdBtn:after {
+  content: "";
+  position: absolute;
+  left: 55%;
+  transform: translateX(-50%) scaleY(1) scaleX(1.45);
+  top: 180%;
+  width: 160%;
+  height: 190%;
+  background-color: #2980b9 ;
+  border-radius: 50%;
+  display: block;
+  transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+  z-index: -1;
+}
+
+.IdBtn:hover {
+  color: #ffffff;
+  border: 1px solid #2980b9 ;
+}
+
+.IdBtn:hover:before {
+  top: -35%;
+  background-color: #2980b9 ;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.IdBtn:hover:after {
+  top: -45%;
+  background-color: #2980b9 ;
+  transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.btn-AddPlan{
+  position: absolute;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+.plan-header{
+  margin: auto;
+  font-size: 26px;
+}
+.kartice-container{
+  margin-top: 15px;
+  margin-bottom: 60px;
+  overflow-y: auto;
+}
+.planName{
+  justify-content: space-between;
+  margin: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: 24px;
+  width: 100%;
+  margin-top: 14px;
+  display: flex;
+  align-items: center; 
+  gap: 10px; 
+  p{
+    font-size: 38px;
+  }
+  form {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+  }
+}
+hr{
+  margin: 0px;
+}
+.btn-AddTrip-container{
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 1.5rem;
+}
+.btn-AddTrip{
+  position: absolute;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+}
+.trips-header{
+  margin: auto;
+  font-size: 26px;
+}
+.card{
+  text-align: center;
+  height: 14rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
+}
+.icons{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.event-icons{
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.event-actions {
+  display: none;
+  text-align: center;
+  margin: auto;
+}
+.event-container:hover .event-actions {
+  display: block;
+}
+.card-body {
+  height: 3rem; /* Adjust the height as needed */
+  overflow-y: auto; /* Enables vertical scroll */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+}
+
+/* Hide scrollbar for all browsers */
+.card-body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.devider{
+ /* padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px; 
+  margin: auto;*/
+}
+.chatbox-left{
+  opacity: 1;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: auto;
+  float: left;
+  width: 30%;
+  height: 67vh; 
+}
+.chatbox-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#chatbox {
+  word-wrap: break-word;
+  flex-grow: 1;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+#chatbox div {
+  margin-bottom: 10px; 
+}
+
+#chatForm {
+  display: flex;
+  gap: 10px;
+}
+
+#messageInput {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.trips-right{
+  padding: 2rem;
+  float: right;
+  width: 70%;
+  height: 67vh; 
+}
+.nav-link {
+  color: white;
+}
+a{
+  color: white;
+}

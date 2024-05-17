@@ -1,7 +1,7 @@
 ﻿/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 .styl{
-  color: #F9EBDE;
+  color: #ffffff;
 }
 .containerB{
   width: 100%;
@@ -18,7 +18,7 @@ a.navbar-brand {
 }
 
 a {
-  color: #F9EBDE;
+  color: #ffffff;
 }
 .wrapper {
   display: flex;
@@ -30,22 +30,22 @@ a {
 }
 
 .btn-primary {
-  color: #F9EBDE;
-  background-color: #815854;
-  border-color: #F9EBDE;
+  color: #ffffff;
+  background-color: #3498db;
+  border-color: #ffffff;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #F9EBDE;
-  background-color: #815854;
-  border-color: #F9EBDE;
+  color: #ffffff;
+  background-color: #3498db;
+  border-color: #ffffff;
 }
 
 .border-top {
-  border-top: 1px solid #F9EBDE
+  border-top: 1px solid #ffffff
 }
 .border-bottom {
-  border-bottom: 1px solid #F9EBDE;
+  border-bottom: 1px solid #ffffff;
 }
 
 .box-shadow {
@@ -58,52 +58,41 @@ button.accept-policy {
 }
 
 .footer {
-  background-color: #815854;
-  color: #F9EBDE;
+  background-color: #3498db;
+  color: #ffffff;
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 61px;
 }
-.left{
-  float: left;
-  width: 70%;
-  height: 84vh; /* 100% of the viewport height */
-  background-color: #F9EBDE; /* Left div background color */
+.inpt {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
-.right{
-  align-items: center;
-  position: relative;
-  float: right;
-  padding: 5px;
-  width: 32rem;
-  height: 84vh; /* 100% of the viewport height */
-  background-color: #815854; /* Right div background color */
+
+.inpt input {
+  width: 25rem;
+  height: 5rem;
+  border: 3px solid #ffffff;
+  border-radius: 5px;
+  text-align: center;
 }
-.inpt{
-  position: absolute;
-  bottom: 10px;
-  input{
-    width: 25rem;
-    height: 5rem;
-    border: 3px solid #F9EBDE;
-    border-radius: 5px;
-    text-align: center;
-  }
-  input, select,textarea{
-    color:#815854 ;
-    background-color: #F9EBDE;
-    border: none;
-  }
-  button{
-    height: 5rem;
-    width: 6rem;
-    color: #815854;
-    border: 3px solid #815854;
-    background-color: #F9EBDE;
-    border-radius: 5px;
-  }
+
+.inpt input, .inpt select, .inpt textarea {
+  color: #3498db;
+  background-color: #ffffff;
+  border: none;
+}
+
+.inpt button {
+  height: 5rem;
+  width: 6rem;
+  color: #3498db;
+  border: 3px solid #3498db;
+  background-color: #ffffff;
+  border-radius: 5px;
 }
 .outpt{
     width: 31rem;
@@ -111,8 +100,8 @@ button.accept-policy {
     padding: 15px;
     font-family: monospace;
     overflow: auto;
-    background-color: #F9EBDE;
-    border: 1px solid #815854;
+    background-color: #ffffff;
+    border: 1px solid #3498db;
     border-radius: 5px;
     display: flex;
     justify-content: center;
